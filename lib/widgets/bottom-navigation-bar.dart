@@ -3,11 +3,11 @@ import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/resources/strings.dart';
 
 class CfBottomNavigationBar extends StatelessWidget {
-  final PageController pageController;
+  final Function handleChangeTab;
   final int currentIndex;
 
   CfBottomNavigationBar(
-      {@required this.pageController, @required this.currentIndex});
+      {@required this.handleChangeTab, @required this.currentIndex});
 
   Widget _renderTitle(String title) {
     return Text(
@@ -35,12 +35,8 @@ class CfBottomNavigationBar extends StatelessWidget {
         selectedFontSize: 12,
         elevation: 0,
         currentIndex: currentIndex,
-        onTap: (tab) {
-          pageController.animateToPage(
-            tab,
-            duration: Duration(microseconds: 500),
-            curve: Curves.ease,
-          );
+        onTap: (index) {
+          this.handleChangeTab(index);
         },
         items: [
           BottomNavigationBarItem(

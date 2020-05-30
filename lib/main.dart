@@ -6,7 +6,6 @@ import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/resources/themes.dart';
 import 'package:cinephile_flutter/pages/home/home.dart';
 import 'package:cinephile_flutter/resources/strings.dart';
-import 'package:cinephile_flutter/routes.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -25,7 +24,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       title: CfStrings.APP_NAME,
       theme: CfThemes.primary,
-      routes: routes(context),
       home: HomePage(),
     );
   }

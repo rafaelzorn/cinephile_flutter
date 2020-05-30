@@ -5,44 +5,25 @@ import 'package:cinephile_flutter/pages/configuration/configuration.dart';
 import 'package:cinephile_flutter/widgets/bottom-navigation-bar.dart';
 
 class HomePage extends StatefulWidget {
-  // route
-  static final String route = '/home';
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  // controller
-  PageController _pageController;
-
   // state
   int tab = 0;
 
-  @override
-  void initState() {
-    super.initState();
-
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-
-    super.dispose();
+  void handleChangeTab(index) {
+    setState(() {
+      tab = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        onPageChanged: (currentPage) {
-          setState(() {
-            tab = currentPage;
-          });
-        },
-        controller: _pageController,
+      body: IndexedStack(
+        index: tab,
         children: <Widget>[
           MoviesPage(),
           SearchPage(),
@@ -50,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: CfBottomNavigationBar(
-        pageController: _pageController,
+        handleChangeTab: handleChangeTab,
         currentIndex: tab,
       ),
     );
