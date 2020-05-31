@@ -1,12 +1,14 @@
-import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+// Cf
+import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/models/movie.dart';
 import 'package:cinephile_flutter/utils/image.dart';
 import 'package:cinephile_flutter/utils/genre.dart';
 import 'package:cinephile_flutter/utils/date.dart';
 import 'package:cinephile_flutter/resources/languages.dart';
-import 'package:transparent_image/transparent_image.dart';
-import 'package:cinephile_flutter/pages/movies/widgets/movie/widgets/score.dart';
+import 'package:cinephile_flutter/screens/movies/widgets/movie/widgets/score.dart';
 import 'package:cinephile_flutter/resources/images.dart';
 
 class MovieWidget extends StatelessWidget {
@@ -46,33 +48,21 @@ class MovieWidget extends StatelessWidget {
                 movie.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ],
         ),
         Container(
-          margin: EdgeInsets.symmetric(
-            vertical: 3,
-            horizontal: 0,
-          ),
+          margin: EdgeInsets.symmetric(vertical: 3, horizontal: 0),
           child: Text(
             '${DateUtils.convertToYear(movie.releaseDate)} | ${CfLanguages.LANGUAGES[movie.originalLanguage]}',
-            style: TextStyle(
-              fontSize: 15,
-              color: CfColors.BLUE,
-            ),
+            style: TextStyle(fontSize: 15, color: CfColors.BLUE),
           ),
         ),
         Text(
           '${GenreUtils.getGenresById(movie.genreIds)}',
-          style: TextStyle(
-            fontSize: 15,
-            color: CfColors.BLUE,
-          ),
+          style: TextStyle(fontSize: 15, color: CfColors.BLUE),
         ),
       ],
     );
@@ -85,10 +75,7 @@ class MovieWidget extends StatelessWidget {
       child: Container(
         height: 175,
         margin: EdgeInsets.only(bottom: 20),
-        padding: EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 0,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
         child: Row(
           children: <Widget>[
             _renderImage(),

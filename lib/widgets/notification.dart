@@ -1,5 +1,7 @@
-import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:flutter/material.dart';
+
+// Cf
+import 'package:cinephile_flutter/resources/colors.dart';
 
 class CfNotificationWidget extends StatelessWidget {
   final IconData icon;
@@ -36,9 +38,7 @@ class CfNotificationWidget extends StatelessWidget {
             child: Text(
               this.textButton,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: CfColors.BLUE,
-              ),
+              style: TextStyle(color: CfColors.BLUE),
             ),
           ),
         ),
@@ -53,20 +53,13 @@ class CfNotificationWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(
-            this.icon,
-            size: 72,
-            color: CfColors.DARK_BLUE,
-          ),
+          Icon(this.icon, size: 72, color: CfColors.DARK_BLUE),
           Container(
             padding: EdgeInsets.all(25),
             child: Text(
               this.text,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 19,
-                color: CfColors.BLUE,
-              ),
+              style: TextStyle(fontSize: 19, color: CfColors.BLUE),
             ),
           ),
           _renderButton(),

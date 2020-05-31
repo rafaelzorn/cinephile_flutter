@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class CfSpinnerWidget extends StatelessWidget {
   final double strokeWidth;

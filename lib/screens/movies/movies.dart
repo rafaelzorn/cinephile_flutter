@@ -1,24 +1,23 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+// Cf
 import 'package:cinephile_flutter/resources/strings.dart';
 import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 import 'package:cinephile_flutter/widgets/notification.dart';
-import 'package:cinephile_flutter/pages/movies/widgets/movie/movie.dart';
+import 'package:cinephile_flutter/screens/movies/widgets/movie/movie.dart';
 import 'package:cinephile_flutter/models/movie.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/utils/date.dart';
 
-class MoviesPage extends StatefulWidget {
-  // route
-  static final String route = '/movies';
-
+class MoviesScreen extends StatefulWidget {
   @override
-  _MoviesPageState createState() => _MoviesPageState();
+  _MoviesScreenState createState() => _MoviesScreenState();
 }
 
-class _MoviesPageState extends State<MoviesPage> {
+class _MoviesScreenState extends State<MoviesScreen> {
   static final _api = ApiService.getInstance();
 
   // state
@@ -153,11 +152,7 @@ class _MoviesPageState extends State<MoviesPage> {
   Widget _renderContent() {
     if (isLoading && !isLoadingMore && !isRefresh) {
       return Center(
-        child: SizedBox(
-          height: 40,
-          width: 40,
-          child: CfSpinnerWidget(),
-        ),
+        child: SizedBox(height: 40, width: 40, child: CfSpinnerWidget()),
       );
     }
 
@@ -181,16 +176,10 @@ class _MoviesPageState extends State<MoviesPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 25,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
           child: Text(
             CfStrings.MOST_POPULAR,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
         ),
         Expanded(

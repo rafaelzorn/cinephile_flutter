@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+// Cf
 import 'package:cinephile_flutter/resources/colors.dart';
 
 class CfThemes {
@@ -8,9 +10,7 @@ class CfThemes {
         appBarTheme: AppBarTheme(
           color: CfColors.WHITE,
           brightness: Brightness.light,
-          iconTheme: IconThemeData(
-            color: CfColors.DARK_BLUE,
-          ),
+          iconTheme: IconThemeData(color: CfColors.DARK_BLUE),
         ),
         primaryTextTheme: TextTheme(
           title: TextStyle(

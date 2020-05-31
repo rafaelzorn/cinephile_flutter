@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
+// Cf
 import 'package:cinephile_flutter/resources/strings.dart';
 
-class ConfigurationPage extends StatelessWidget {
+class ConfigurationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

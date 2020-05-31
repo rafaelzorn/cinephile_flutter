@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+// Cf
 import 'package:cinephile_flutter/resources/colors.dart';
 
 class ScoreWidget extends StatelessWidget {
@@ -23,10 +25,7 @@ class ScoreWidget extends StatelessWidget {
     return FractionallySizedBox(
       widthFactor: 0.25,
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 2,
-          vertical: 4,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 2, vertical: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(100)),
           color: _colorScore(),
