@@ -16,10 +16,7 @@ class CfBottomNavigationBar extends StatelessWidget {
   _renderBottomNavigationBarItem(IconData icon, String title) {
     return BottomNavigationBarItem(
       icon: Icon(icon),
-      title: Text(
-        title,
-        style: TextStyle(fontSize: 11, letterSpacing: .1),
-      ),
+      label: title,
     );
   }
 

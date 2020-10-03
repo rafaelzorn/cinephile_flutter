@@ -13,7 +13,7 @@ class CfThemes {
           iconTheme: IconThemeData(color: CfColors.DARK_BLUE),
         ),
         primaryTextTheme: TextTheme(
-          title: TextStyle(
+          headline6: TextStyle(
             color: CfColors.DARK_BLUE,
             fontWeight: FontWeight.normal,
             fontSize: 20,
@@ -21,7 +21,7 @@ class CfThemes {
           ),
         ),
         textTheme: TextTheme(
-          body1: TextStyle(
+          bodyText2: TextStyle(
             fontSize: 16,
             color: CfColors.DARK_BLUE,
             letterSpacing: 0.5,
