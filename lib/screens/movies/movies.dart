@@ -87,15 +87,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
     _getMovies();
   }
 
-  void _handleTryAgainLoadMovies() {
-    setState(() {
-      page = 1;
-      movies = [];
-    });
-
-    _getMovies();
-  }
-
   void _handleLoadMoreMovies() {
     int nextPage = page + 1;
 
@@ -161,7 +152,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
         icon: Icons.report_problem,
         text: CfStrings.SOMETHING_WRONG_HAS_HAPPENED,
         textButton: CfStrings.TRY_AGAIN,
-        onPress: _handleTryAgainLoadMovies,
+        onPress: _getMovies,
       );
     }
 
