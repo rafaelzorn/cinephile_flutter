@@ -12,4 +12,5 @@ class CfColors {
   static const Color LIGHT_RED = Color(0XFFFF7F7F);
   static const Color LIGHT_YELLOW = Color(0XFFEAB079);
   static const Color LIGHT_GREEN = Color(0XFF82C596);
+  static const Color TRANSPARENT = Color(0X00000000);
 }
