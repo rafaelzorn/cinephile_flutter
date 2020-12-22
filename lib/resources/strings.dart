@@ -10,4 +10,10 @@ class CfStrings {
   static const TRY_AGAIN = 'Try Again';
   static const UNIFORMED = 'Uninformed';
   static const NO_RESULTS_AVAILABLE = 'No results available.';
+  static const INTERFACE = 'Interface';
+  static const INCLUDE_ADULT_CONTENT = 'Include adult content';
+  static const APPLICATION = 'Application';
+  static const TELL_A_FRIEND = 'Tell a friend';
+  static const RATE_THE_APP = 'Rate the app';
+  static const VERSION = 'Version';
 }
