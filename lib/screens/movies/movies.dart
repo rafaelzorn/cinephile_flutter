@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // Cf
 import 'package:cinephile_flutter/resources/strings.dart';
+import 'package:cinephile_flutter/resources/type-request.dart';
 import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 import 'package:cinephile_flutter/widgets/notification.dart';
@@ -13,12 +14,27 @@ import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/utils/date.dart';
 
 class MoviesScreen extends StatefulWidget {
+  // Route
+  static String route = '/movies';
+
+  final Map arguments;
+
+  MoviesScreen({
+    this.arguments = const {
+      'id': null,
+      'name': null,
+      'typeRequest': CfTypeRequest.DISCOVER
+    },
+  });
+
   @override
-  _MoviesScreenState createState() => _MoviesScreenState();
+  _MoviesScreenState createState() => _MoviesScreenState(this.arguments);
 }
 
 class _MoviesScreenState extends State<MoviesScreen> {
   static final _api = ApiService.getInstance();
+
+  final Map arguments;
 
   // state
   List<MovieModel> movies = [];
@@ -29,11 +45,31 @@ class _MoviesScreenState extends State<MoviesScreen> {
   int page = 1;
   int totalPages = 0;
 
+  _MoviesScreenState(this.arguments);
+
   @override
   void initState() {
     super.initState();
 
     _getMovies();
+  }
+
+  Map<String, dynamic> _getQueryRequest() {
+    Map<String, dynamic> params = {
+      'page': page.toString(),
+      'with_release_type': '1|2|3|4|5|6|7',
+      'release_date.lte': DateUtils.currentDate(),
+    };
+
+    if (this.arguments['typeRequest'] == CfTypeRequest.DISCOVER) {
+      params.addAll(this.arguments['id'] != null ? { 'with_genres': this.arguments['id'] } : {});
+    }
+
+    if (this.arguments['typeRequest'] == CfTypeRequest.SEARCH) {
+      params.addAll({ 'query': this.arguments['name'].trim() });
+    }
+
+    return params;
   }
 
   void _getMovies() async {
@@ -42,11 +78,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
     });
 
     try {
-      Response response = await _api.get('discover/movie', queryParameters: {
-        'page': page.toString(),
-        'with_release_type': '1|2|3|4|5|6|7',
-        'release_date.lte': DateUtils.currentDate(),
-      });
+      Response response =
+          await _api.get('${this.arguments['typeRequest']}/movie', queryParameters: _getQueryRequest());
 
       final moviesFromApi = JsonDecoder().convert(response.toString());
 
@@ -98,7 +131,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
     _getMovies();
   }
 
-  Widget _renderMovie(BuildContext context, int index) {
+  Widget _renderMovie({BuildContext context, int index}) {
     if (index == movies.length) {
       return _renderFooter();
     }
@@ -140,6 +173,25 @@ class _MoviesScreenState extends State<MoviesScreen> {
     );
   }
 
+  Widget _renderHeaderTitle() {
+    if (this.arguments['name'] != null) {
+      return Text(this.arguments['name']);
+    }
+
+    return Text(CfStrings.HOME);
+  }
+
+  Widget _renderHeaderIcon() {
+    if (this.arguments['typeRequest'] == CfTypeRequest.DISCOVER) {
+      return IconButton(
+        icon: Icon(Icons.filter_list),
+        onPressed: () {},
+      );
+    }
+
+    return Container();
+  }
+
   Widget _renderContent() {
     if (isLoading && !isLoadingMore && !isRefresh) {
       return Center(
@@ -176,7 +228,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
         Expanded(
           child: RefreshIndicator(
             child: ListView.builder(
-              itemBuilder: _renderMovie,
+              itemBuilder: (context, index) => _renderMovie(
+                context: context,
+                index: index,
+              ),
               itemCount: movies.length + 1,
             ),
             onRefresh: _handleRefreshMovies,
@@ -190,12 +245,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(CfStrings.HOME),
+        title: _renderHeaderTitle(),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.filter_list),
-            onPressed: () {},
-          ),
+          _renderHeaderIcon(),
         ],
       ),
       body: _renderContent(),

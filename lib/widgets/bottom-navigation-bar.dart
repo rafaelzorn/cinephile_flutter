@@ -13,7 +13,7 @@ class CfBottomNavigationBar extends StatelessWidget {
     @required this.currentIndex,
   });
 
-  _renderBottomNavigationBarItem(IconData icon, String title) {
+  _renderBottomNavigationBarItem({IconData icon, String title}) {
     return BottomNavigationBarItem(
       icon: Icon(icon),
       label: title,
@@ -26,7 +26,9 @@ class CfBottomNavigationBar extends StatelessWidget {
       height: 55,
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(color: CfColors.BLUE),
+          BoxShadow(
+            color: CfColors.BLUE,
+          ),
         ],
       ),
       child: BottomNavigationBar(
@@ -41,9 +43,9 @@ class CfBottomNavigationBar extends StatelessWidget {
           this.handleIndexStack(index);
         },
         items: [
-          _renderBottomNavigationBarItem(Icons.home, CfStrings.HOME),
-          _renderBottomNavigationBarItem(Icons.search, CfStrings.SEARCH),
-          _renderBottomNavigationBarItem(Icons.menu, CfStrings.MORE),
+          _renderBottomNavigationBarItem(icon: Icons.home, title: CfStrings.HOME),
+          _renderBottomNavigationBarItem(icon: Icons.search, title: CfStrings.SEARCH),
+          _renderBottomNavigationBarItem(icon: Icons.menu, title: CfStrings.MORE),
         ],
       ),
     );

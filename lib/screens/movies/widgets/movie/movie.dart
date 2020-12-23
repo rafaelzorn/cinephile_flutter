@@ -56,12 +56,12 @@ class MovieWidget extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(vertical: 3, horizontal: 0),
           child: Text(
-            '${DateUtils.convertToYear(movie.releaseDate)} | ${CfLanguages.LANGUAGES[movie.originalLanguage]}',
+            '${DateUtils.convertToYear(date: movie.releaseDate)} | ${CfLanguages.LANGUAGES[movie.originalLanguage]}',
             style: TextStyle(fontSize: 15, color: CfColors.BLUE),
           ),
         ),
         Text(
-          '${GenreUtils.getGenresById(movie.genreIds)}',
+          '${GenreUtils.getGenresById(ids: movie.genreIds)}',
           style: TextStyle(fontSize: 15, color: CfColors.BLUE),
         ),
       ],

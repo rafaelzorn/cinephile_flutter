@@ -5,7 +5,7 @@ class DateUtils {
     return DateFormat('yyyy-MM-dd').format(DateTime.now());
   }
 
-  static String convertToYear(date) {
+  static String convertToYear({String date}) {
     return DateFormat('yyyy').format(DateTime.parse(date));
   }
 }

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 // Cf
 import 'package:cinephile_flutter/resources/strings.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
+import 'package:cinephile_flutter/services/navigation.dart';
+import 'package:cinephile_flutter/screens/movies/movies.dart';
+import 'package:cinephile_flutter/resources/type-request.dart';
 
 class InputSearchWidget extends StatefulWidget {
   @override
@@ -38,7 +41,10 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
 
   void _handleSubmit() {
     if (value.length > 0) {
-      print(value);
+      NavigationService().navigateTo(MoviesScreen.route, arguments: {
+        'typeRequest': CfTypeRequest.SEARCH,
+        'name': value,
+      });
     }
   }
 

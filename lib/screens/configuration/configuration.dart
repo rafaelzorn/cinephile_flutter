@@ -5,23 +5,28 @@ import 'package:cinephile_flutter/resources/strings.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/widgets/switch.dart';
 import 'package:cinephile_flutter/widgets/alert-dialog.dart';
+import 'package:cinephile_flutter/widgets/share.dart';
+import 'package:cinephile_flutter/services/navigation.dart';
 
 class ConfigurationScreen extends StatelessWidget {
+  static final currentContext = NavigationService().navigatorKey.currentContext;
+
   void _handleShare() {
-    print('Share');
+    CfShareWidget.share(title: '${CfStrings.TITLE_SHARE_CONFIGURATION} \u{1F37F}');
   }
 
   void _handleRating() {
-    CfAlertDialogWidget();
+    CfAlertDialogWidget.alertDialog(
+        context: currentContext,
+        title: CfStrings.ATTENTION,
+        content: CfStrings.CONTENT_RATING_CONFIGURATION);
   }
 
   void _handleChangeAdultContent() {}
 
-  Widget _renderSectionTitle(String title) {
+  Widget _renderSectionTitle({String title}) {
     return Container(
-      margin: EdgeInsets.only(
-        bottom: 15,
-      ),
+      margin: EdgeInsets.only(bottom: 15),
       child: Text(
         title,
         style: TextStyle(
@@ -35,13 +40,11 @@ class ConfigurationScreen extends StatelessWidget {
 
   Widget _renderSectionInterface() {
     return Container(
-      margin: EdgeInsets.only(
-        bottom: 40,
-      ),
+      margin: EdgeInsets.only(bottom: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _renderSectionTitle(CfStrings.INTERFACE),
+        children: <Widget>[
+          _renderSectionTitle(title: CfStrings.INTERFACE),
           Container(
             padding: EdgeInsets.symmetric(
               vertical: 25,
@@ -50,7 +53,7 @@ class ConfigurationScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
-              children: [
+              children: <Widget>[
                 Text(CfStrings.INCLUDE_ADULT_CONTENT,
                     style: TextStyle(
                       fontSize: 18,
@@ -65,8 +68,8 @@ class ConfigurationScreen extends StatelessWidget {
     );
   }
 
-  Widget _renderItemApplication(
-    String title, {
+  Widget _renderItemApplication({
+    String title,
     bool hasBorder = true,
     colorText = CfColors.DARK_BLUE,
     Function onPress,
@@ -88,7 +91,7 @@ class ConfigurationScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
-        children: [
+        children: <Widget>[
           Text(
             title,
             style: TextStyle(
@@ -116,20 +119,20 @@ class ConfigurationScreen extends StatelessWidget {
   Widget _renderSectionApplication() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _renderSectionTitle(CfStrings.APPLICATION),
+      children: <Widget>[
+        _renderSectionTitle(title: CfStrings.APPLICATION),
         _renderItemApplication(
-          CfStrings.TELL_A_FRIEND,
+          title: CfStrings.TELL_A_FRIEND,
           onPress: _handleShare,
           icon: Icons.share,
         ),
         _renderItemApplication(
-          CfStrings.RATE_THE_APP,
+          title: CfStrings.RATE_THE_APP,
           onPress: _handleRating,
           icon: Icons.star_border,
         ),
         _renderItemApplication(
-          '${CfStrings.VERSION} 0.0.1',
+          title: '${CfStrings.VERSION} 0.0.1',
           hasBorder: false,
           colorText: CfColors.BLUE,
         ),
@@ -141,7 +144,7 @@ class ConfigurationScreen extends StatelessWidget {
     return SingleChildScrollView(
       padding: EdgeInsets.fromLTRB(20, 25, 20, 20),
       child: Column(
-        children: [
+        children: <Widget>[
           _renderSectionInterface(),
           _renderSectionApplication(),
         ],
@@ -150,7 +153,7 @@ class ConfigurationScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return Scaffold(
       appBar: AppBar(
         title: Text(CfStrings.MORE),

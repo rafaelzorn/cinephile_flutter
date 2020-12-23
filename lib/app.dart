@@ -15,7 +15,7 @@ class _AppState extends State<App> {
   // state
   int indexStack = 0;
 
-  void _handleIndexStack(index) {
+  void _handleIndexStack({int index}) {
     setState(() {
       indexStack = index;
     });
@@ -33,7 +33,7 @@ class _AppState extends State<App> {
         ],
       ),
       bottomNavigationBar: CfBottomNavigationBar(
-        handleIndexStack: _handleIndexStack,
+        handleIndexStack: (index) => _handleIndexStack(index: index),
         currentIndex: indexStack,
       ),
     );
