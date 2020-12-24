@@ -12,7 +12,8 @@ class ConfigurationScreen extends StatelessWidget {
   static final currentContext = NavigationService().navigatorKey.currentContext;
 
   void _handleShare() {
-    CfShareWidget.share(title: '${CfStrings.TITLE_SHARE_CONFIGURATION} \u{1F37F}');
+    CfShareWidget.share(
+        title: '${CfStrings.TITLE_SHARE_CONFIGURATION} \u{1F37F}');
   }
 
   void _handleRating() {
@@ -22,7 +23,9 @@ class ConfigurationScreen extends StatelessWidget {
         content: CfStrings.CONTENT_RATING_CONFIGURATION);
   }
 
-  void _handleChangeAdultContent() {}
+  void _handleChangeAdultContent(check) {
+    print(check);
+  }
 
   Widget _renderSectionTitle({String title}) {
     return Container(
@@ -59,7 +62,8 @@ class ConfigurationScreen extends StatelessWidget {
                       fontSize: 18,
                       color: CfColors.DARK_BLUE,
                     )),
-                CfSwitchWidget(),
+                CfSwitchWidget(
+                    onChanged: _handleChangeAdultContent, value: false),
               ],
             ),
           ),
@@ -153,7 +157,7 @@ class ConfigurationScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(CfStrings.MORE),

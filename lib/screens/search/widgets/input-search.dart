@@ -76,6 +76,7 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
           TextField(
             controller: _controller,
             style: TextStyle(color: CfColors.DARK_BLUE, fontSize: 18),
+            textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(

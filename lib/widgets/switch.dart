@@ -7,11 +7,15 @@ class CfSwitchWidget extends StatelessWidget {
   final Color activeTrackColor;
   final Color inactiveTrackColor;
   final Color activeColor;
+  final Function onChanged;
+  final bool value;
 
   CfSwitchWidget({
     this.activeTrackColor = CfColors.DARK_BLUE,
     this.inactiveTrackColor = CfColors.GRAY,
-    this.activeColor = CfColors.CYAN
+    this.activeColor = CfColors.CYAN,
+    @required this.onChanged,
+    @required this.value,
   });
 
   @override
@@ -20,9 +24,9 @@ class CfSwitchWidget extends StatelessWidget {
       activeTrackColor: this.activeTrackColor,
       inactiveTrackColor:this.inactiveTrackColor,
       activeColor: this.activeColor,
-      value: false,
+      value: this.value,
       onChanged: (check) {
-        print(check);
+        this.onChanged(check);
       },
     );
   }

@@ -51,22 +51,26 @@ class _MoviesScreenState extends State<MoviesScreen> {
   void initState() {
     super.initState();
 
-    _getMovies();
+    _getMovies();  
   }
 
   Map<String, dynamic> _getQueryRequest() {
     Map<String, dynamic> params = {
       'page': page.toString(),
+      'sort_by': 'popularity.desc',
       'with_release_type': '1|2|3|4|5|6|7',
       'release_date.lte': DateUtils.currentDate(),
+      'include_adult': false,
     };
 
     if (this.arguments['typeRequest'] == CfTypeRequest.DISCOVER) {
-      params.addAll(this.arguments['id'] != null ? { 'with_genres': this.arguments['id'] } : {});
+      params.addAll(this.arguments['id'] != null
+          ? {'with_genres': this.arguments['id']}
+          : {});
     }
 
     if (this.arguments['typeRequest'] == CfTypeRequest.SEARCH) {
-      params.addAll({ 'query': this.arguments['name'].trim() });
+      params.addAll({'query': this.arguments['name'].trim()});
     }
 
     return params;
@@ -78,8 +82,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
     });
 
     try {
-      Response response =
-          await _api.get('${this.arguments['typeRequest']}/movie', queryParameters: _getQueryRequest());
+      Response response = await _api.get(
+          '${this.arguments['typeRequest']}/movie',
+          queryParameters: _getQueryRequest());
 
       final moviesFromApi = JsonDecoder().convert(response.toString());
 
@@ -221,7 +226,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
           child: Text(
-            CfStrings.MOST_POPULAR,
+            this.arguments['typeRequest'] == CfTypeRequest.DISCOVER
+                ? CfStrings.MOST_POPULAR
+                : this.arguments['name'],
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
         ),
