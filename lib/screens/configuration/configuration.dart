@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 // Cf
 import 'package:cinephile_flutter/resources/strings.dart';
@@ -7,9 +8,12 @@ import 'package:cinephile_flutter/widgets/switch.dart';
 import 'package:cinephile_flutter/widgets/alert-dialog.dart';
 import 'package:cinephile_flutter/widgets/share.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
+import 'package:cinephile_flutter/store/mobx.dart';
 
 class ConfigurationScreen extends StatelessWidget {
   static final currentContext = NavigationService().navigatorKey.currentContext;
+
+  AsMobx _mobx = AsMobx();
 
   void _handleShare() {
     CfShareWidget.share(
@@ -24,7 +28,7 @@ class ConfigurationScreen extends StatelessWidget {
   }
 
   void _handleChangeAdultContent(check) {
-    print(check);
+    _mobx.configurationStore.setConfiguration(check);
   }
 
   Widget _renderSectionTitle({String title}) {
@@ -62,8 +66,11 @@ class ConfigurationScreen extends StatelessWidget {
                       fontSize: 18,
                       color: CfColors.DARK_BLUE,
                     )),
-                CfSwitchWidget(
-                    onChanged: _handleChangeAdultContent, value: false),
+                Observer(builder: (_) {
+                  return CfSwitchWidget(
+                      onChanged: _handleChangeAdultContent,
+                      value: _mobx.configurationStore.hasAdultContent);
+                })
               ],
             ),
           ),

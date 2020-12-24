@@ -12,6 +12,7 @@ import 'package:cinephile_flutter/screens/movies/widgets/movie/movie.dart';
 import 'package:cinephile_flutter/models/movie.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/utils/date.dart';
+import 'package:cinephile_flutter/store/mobx.dart';
 
 class MoviesScreen extends StatefulWidget {
   // Route
@@ -35,6 +36,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
   static final _api = ApiService.getInstance();
 
   final Map arguments;
+
+  AsMobx _mobx = AsMobx();
 
   // state
   List<MovieModel> movies = [];
@@ -60,7 +63,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
       'sort_by': 'popularity.desc',
       'with_release_type': '1|2|3|4|5|6|7',
       'release_date.lte': DateUtils.currentDate(),
-      'include_adult': false,
+      'include_adult': _mobx.configurationStore.hasAdultContent,
     };
 
     if (this.arguments['typeRequest'] == CfTypeRequest.DISCOVER) {
@@ -80,6 +83,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
     setState(() {
       isLoading = true;
     });
+
+    print(_getQueryRequest());
 
     try {
       Response response = await _api.get(
@@ -116,7 +121,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
     }
   }
 
-  Future<void> _handleRefreshMovies() async {
+  void _handleRefreshMovies() {
     setState(() {
       isRefresh = true;
       page = 1;
