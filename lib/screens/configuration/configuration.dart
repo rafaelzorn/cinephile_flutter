@@ -13,7 +13,7 @@ import 'package:cinephile_flutter/store/mobx.dart';
 class ConfigurationScreen extends StatelessWidget {
   static final currentContext = NavigationService().navigatorKey.currentContext;
 
-  AsMobx _mobx = AsMobx();
+  final AsMobx _mobx = AsMobx();
 
   void _handleShare() {
     CfShareWidget.share(

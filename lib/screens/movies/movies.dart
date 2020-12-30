@@ -13,6 +13,8 @@ import 'package:cinephile_flutter/models/movie.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/utils/date.dart';
 import 'package:cinephile_flutter/store/mobx.dart';
+import 'package:cinephile_flutter/widgets/modal.dart';
+import 'package:cinephile_flutter/screens/movies/widgets/filter-modal/filter-modal.dart';
 
 class MoviesScreen extends StatefulWidget {
   // Route
@@ -79,12 +81,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
     return params;
   }
 
-  void _getMovies() async {
+  Future<void> _getMovies() async {
     setState(() {
       isLoading = true;
     });
-
-    print(_getQueryRequest());
 
     try {
       Response response = await _api.get(
@@ -121,7 +121,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
     }
   }
 
-  void _handleRefreshMovies() {
+  Future<void> _handleRefreshMovies() async {
     setState(() {
       isRefresh = true;
       page = 1;
@@ -130,7 +130,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
     _getMovies();
   }
 
-  void _handleLoadMoreMovies() {
+  Future<void> _handleLoadMoreMovies() async {
     int nextPage = page + 1;
 
     setState(() {
@@ -139,6 +139,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
     });
 
     _getMovies();
+  }
+
+  void _handleFilterModalOpen() {
+    CfModalWidget.showModal(context: context, content: FilterModalWidget());
   }
 
   Widget _renderMovie({BuildContext context, int index}) {
@@ -195,7 +199,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
     if (this.arguments['typeRequest'] == CfTypeRequest.DISCOVER) {
       return IconButton(
         icon: Icon(Icons.filter_list),
-        onPressed: () {},
+        onPressed: () {
+          _handleFilterModalOpen();
+        },
       );
     }
 

@@ -13,26 +13,26 @@ abstract class ConfigurationStoreBase with Store {
   bool hasAdultContent = false;
 
   @action
-  Future initializeConfigurationStore() async {
+  Future<void> initializeConfigurationStore() async {
     await _setPropsFromPersistance();
     await _persistStore();
   }
 
   @action
-  setConfiguration(bool adultContent) {
+  void setConfiguration(bool adultContent) {
     hasAdultContent = adultContent;
 
     _persistStore();
   }
 
-  Future _persistStore() async {
+  Future<void> _persistStore() async {
     await StorageService().setBool(
         StorageKeys.hasAdultContent,
         hasAdultContent,
       );
   }
 
-  Future _setPropsFromPersistance() async {
+  Future<void> _setPropsFromPersistance() async {
     bool persistedData = await StorageService().getBool(StorageKeys.hasAdultContent);
 
     hasAdultContent = persistedData != null ? persistedData : false;
