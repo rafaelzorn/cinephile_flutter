@@ -11,7 +11,7 @@ import 'package:cinephile_flutter/store/mobx.dart';
 
 class ConfigurationScreen extends StatefulWidget {
   // Route
-  static String route = '/configuration';
+  static const String route = '/configuration';
 
   @override
   _ConfigurationScreenState createState() => _ConfigurationScreenState();

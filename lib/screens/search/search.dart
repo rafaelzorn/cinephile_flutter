@@ -11,7 +11,7 @@ import 'package:cinephile_flutter/screens/movies/movies.dart';
 
 class SearchScreen extends StatefulWidget {
   // Route
-  static String route = '/search';
+  static const String route = '/search';
 
   @override
   _SearchScreenState createState() => _SearchScreenState();

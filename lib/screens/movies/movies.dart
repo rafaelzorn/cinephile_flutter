@@ -18,7 +18,7 @@ import 'package:cinephile_flutter/screens/movies/widgets/filter-modal/filter-mod
 
 class MoviesScreen extends StatefulWidget {
   // Route
-  static String route = '/movies';
+  static const String route = '/movies';
 
   final Map arguments;
 
@@ -26,7 +26,7 @@ class MoviesScreen extends StatefulWidget {
     this.arguments = const {
       'id': null,
       'name': null,
-      'typeRequest': CfTypeRequest.DISCOVER
+      'typeRequest': CfTypeRequest.DISCOVER,
     },
   });
 

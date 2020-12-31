@@ -9,7 +9,7 @@ import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/resources/themes.dart';
 import 'package:cinephile_flutter/resources/strings.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
-import 'package:cinephile_flutter/routes.dart';
+import 'package:cinephile_flutter/generate-routes.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -28,7 +28,7 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       title: CfStrings.APP_NAME,
       theme: CfThemes.primary,
-      routes: routes(context),
+      onGenerateRoute: GenerateRoute.generateRoute,
       home: App(),
       navigatorKey: NavigationService().navigatorKey,
     );
