@@ -43,9 +43,12 @@ class CfBottomNavigationBar extends StatelessWidget {
           this.handleIndexStack(index);
         },
         items: [
-          _renderBottomNavigationBarItem(icon: Icons.home, title: CfStrings.HOME),
-          _renderBottomNavigationBarItem(icon: Icons.search, title: CfStrings.SEARCH),
-          _renderBottomNavigationBarItem(icon: Icons.menu, title: CfStrings.MORE),
+          _renderBottomNavigationBarItem(
+              icon: Icons.home, title: CfStrings.HOME),
+          _renderBottomNavigationBarItem(
+              icon: Icons.search, title: CfStrings.SEARCH),
+          _renderBottomNavigationBarItem(
+              icon: Icons.menu, title: CfStrings.MORE),
         ],
       ),
     );

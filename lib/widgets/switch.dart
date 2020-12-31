@@ -22,7 +22,7 @@ class CfSwitchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Switch(
       activeTrackColor: this.activeTrackColor,
-      inactiveTrackColor:this.inactiveTrackColor,
+      inactiveTrackColor: this.inactiveTrackColor,
       activeColor: this.activeColor,
       value: this.value,
       onChanged: (check) {

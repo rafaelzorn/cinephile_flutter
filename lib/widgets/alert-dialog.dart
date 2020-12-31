@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class CfAlertDialogWidget {
   static void alertDialog(
       {BuildContext context, String title, String content}) {
-    
     showDialog(
         context: context,
         builder: (_) {

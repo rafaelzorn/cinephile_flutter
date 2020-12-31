@@ -52,7 +52,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   void initState() {
     super.initState();
 
-    _getMovies();  
+    _getMovies();
   }
 
   Map<String, dynamic> _getQueryRequest() {
@@ -78,8 +78,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
   }
 
   Future<void> _getMovies() async {
-    print(widget.arguments);
-
     setState(() {
       isLoading = true;
     });

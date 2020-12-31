@@ -8,7 +8,7 @@ part 'configuration.g.dart';
 
 class ConfigurationStore = ConfigurationStoreBase with _$ConfigurationStore;
 
-abstract class ConfigurationStoreBase with Store {  
+abstract class ConfigurationStoreBase with Store {
   @observable
   bool hasAdultContent = false;
 
@@ -27,13 +27,14 @@ abstract class ConfigurationStoreBase with Store {
 
   Future<void> _persistStore() async {
     await StorageService().setBool(
-        StorageKeys.hasAdultContent,
-        hasAdultContent,
-      );
+      StorageKeys.hasAdultContent,
+      hasAdultContent,
+    );
   }
 
   Future<void> _setPropsFromPersistance() async {
-    bool persistedData = await StorageService().getBool(StorageKeys.hasAdultContent);
+    bool persistedData =
+        await StorageService().getBool(StorageKeys.hasAdultContent);
 
     hasAdultContent = persistedData != null ? persistedData : false;
   }
