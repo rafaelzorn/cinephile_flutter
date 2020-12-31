@@ -39,6 +39,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
 
   AsMobx _mobx = AsMobx();
 
+  int argumentId;
+  String argumentName;
+  String argumenTypeRequest;
+
   // state
   List<MovieModel> movies = [];
   bool isLoading = false;
@@ -52,6 +56,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
   void initState() {
     super.initState();
 
+    this.argumentId = widget.arguments['id'];
+    this.argumentName = widget.arguments['name'];
+    this.argumenTypeRequest = widget.arguments['typeRequest'];
+
     _getMovies();
   }
 
@@ -64,14 +72,13 @@ class _MoviesScreenState extends State<MoviesScreen> {
       'include_adult': _mobx.configurationStore.hasAdultContent,
     };
 
-    if (widget.arguments['typeRequest'] == CfTypeRequest.DISCOVER) {
-      params.addAll(widget.arguments['id'] != null
-          ? {'with_genres': widget.arguments['id']}
-          : {});
+    if (this.argumenTypeRequest == CfTypeRequest.DISCOVER) {
+      params.addAll(
+          this.argumentId != null ? {'with_genres': this.argumentId} : {});
     }
 
-    if (widget.arguments['typeRequest'] == CfTypeRequest.SEARCH) {
-      params.addAll({'query': widget.arguments['name'].trim()});
+    if (this.argumenTypeRequest == CfTypeRequest.SEARCH) {
+      params.addAll({'query': this.argumentName.trim()});
     }
 
     return params;
@@ -83,8 +90,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
     });
 
     try {
-      Response response = await _api.get(
-          '${widget.arguments['typeRequest']}/movie',
+      Response response = await _api.get('${this.argumenTypeRequest}/movie',
           queryParameters: _getQueryRequest());
 
       final moviesFromApi = JsonDecoder().convert(response.toString());
@@ -184,15 +190,15 @@ class _MoviesScreenState extends State<MoviesScreen> {
   }
 
   Widget _renderHeaderTitle() {
-    if (widget.arguments['name'] != null) {
-      return Text(widget.arguments['name']);
+    if (this.argumentName != null) {
+      return Text(this.argumentName);
     }
 
     return Text(CfStrings.HOME);
   }
 
   Widget _renderHeaderIcon() {
-    if (widget.arguments['typeRequest'] == CfTypeRequest.DISCOVER) {
+    if (this.argumenTypeRequest == CfTypeRequest.DISCOVER) {
       return IconButton(
         icon: Icon(Icons.filter_list),
         onPressed: () {
@@ -233,9 +239,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
           child: Text(
-            widget.arguments['typeRequest'] == CfTypeRequest.DISCOVER
+            this.argumenTypeRequest == CfTypeRequest.DISCOVER
                 ? CfStrings.MOST_POPULAR
-                : widget.arguments['name'],
+                : this.argumentName,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
         ),
