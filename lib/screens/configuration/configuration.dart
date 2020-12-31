@@ -7,12 +7,17 @@ import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/widgets/switch.dart';
 import 'package:cinephile_flutter/widgets/alert-dialog.dart';
 import 'package:cinephile_flutter/widgets/share.dart';
-import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/store/mobx.dart';
 
-class ConfigurationScreen extends StatelessWidget {
-  static final currentContext = NavigationService().navigatorKey.currentContext;
+class ConfigurationScreen extends StatefulWidget {
+  // Route
+  static String route = '/configuration';
 
+  @override
+  _ConfigurationScreenState createState() => _ConfigurationScreenState();
+}
+
+class _ConfigurationScreenState extends State<ConfigurationScreen> {
   final AsMobx _mobx = AsMobx();
 
   void _handleShare() {
@@ -22,7 +27,7 @@ class ConfigurationScreen extends StatelessWidget {
 
   void _handleRating() {
     CfAlertDialogWidget.alertDialog(
-        context: currentContext,
+        context: context,
         title: CfStrings.ATTENTION,
         content: CfStrings.CONTENT_RATING_CONFIGURATION);
   }

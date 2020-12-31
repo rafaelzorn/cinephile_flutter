@@ -9,7 +9,15 @@ import 'package:cinephile_flutter/screens/search/widgets/input-search.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/screens/movies/movies.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
+  // Route
+  static String route = '/search';
+
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   void _handleSearch({Map<String, Object> genre}) {
     NavigationService().navigateTo(MoviesScreen.route, arguments: {
       'typeRequest': CfTypeRequest.DISCOVER,
