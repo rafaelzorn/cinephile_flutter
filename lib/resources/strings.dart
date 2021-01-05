@@ -21,4 +21,13 @@ class CfStrings {
   static const CONTENT_RATING_CONFIGURATION =
       'Nothing happens now. In the future you will be redirected to store.';
   static const FILTER = 'Filter';
+  static const DATE = 'Date';
+  static const RELEASES = 'Releases';
+  static const OLD = 'Old';
+  static const POPULARITY = 'Popularity';
+  static const LESS_POPULAR = 'Less popular';
+  static const REVENUE = 'Revenue';
+  static const HIGHER_REVENUE = 'Higher revenue';
+  static const LOWEST_REVENUE = 'Lowest revenue';
+  static const CONFIRM = 'Confirm';
 }

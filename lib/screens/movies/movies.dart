@@ -51,6 +51,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
   bool isError = false;
   int page = 1;
   int totalPages = 0;
+  String filterType = 'popularity.desc';
+  String filterName = CfStrings.MOST_POPULAR;
 
   @override
   void initState() {
@@ -66,7 +68,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   Map<String, dynamic> _getQueryRequest() {
     Map<String, dynamic> params = {
       'page': page.toString(),
-      'sort_by': 'popularity.desc',
+      'sort_by': this.filterType,
       'with_release_type': '1|2|3|4|5|6|7',
       'release_date.lte': DateUtils.currentDate(),
       'include_adult': _mobx.configurationStore.hasAdultContent,
@@ -240,7 +242,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
           child: Text(
             this.argumenTypeRequest == CfTypeRequest.DISCOVER
-                ? CfStrings.MOST_POPULAR
+                ? this.filterName
                 : this.argumentName,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
