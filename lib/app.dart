@@ -5,6 +5,7 @@ import 'package:cinephile_flutter/screens/movies/movies.dart';
 import 'package:cinephile_flutter/screens/search/search.dart';
 import 'package:cinephile_flutter/screens/configuration/configuration.dart';
 import 'package:cinephile_flutter/widgets/bottom-navigation-bar.dart';
+import 'package:cinephile_flutter/helpers/unfocus.dart';
 import 'package:cinephile_flutter/store/mobx.dart';
 
 class App extends StatefulWidget {
@@ -42,6 +43,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   void _handleIndexStack({int index}) {
+    UnfocusHelpers.unfocus(context);
+
     setState(() {
       indexStack = index;
     });

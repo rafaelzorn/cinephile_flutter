@@ -8,6 +8,7 @@ import 'package:cinephile_flutter/resources/type-request.dart';
 import 'package:cinephile_flutter/screens/search/widgets/input-search.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/screens/movies/movies.dart';
+import 'package:cinephile_flutter/helpers/unfocus.dart';
 
 class SearchScreen extends StatefulWidget {
   // Route
@@ -19,6 +20,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   void _handleSearch({Map<String, Object> genre}) {
+    UnfocusHelpers.unfocus(context);
+
     NavigationService().navigateTo(MoviesScreen.route, arguments: {
       'typeRequest': CfTypeRequest.DISCOVER,
       'name': genre['name'],
@@ -59,11 +62,16 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(CfStrings.SEARCH),
+    return GestureDetector(
+      onTap: () {
+        UnfocusHelpers.unfocus(context);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(CfStrings.SEARCH),
+        ),
+        body: _renderContent(),
       ),
-      body: _renderContent(),
     );
   }
 }
