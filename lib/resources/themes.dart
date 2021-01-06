@@ -5,6 +5,7 @@ import 'package:cinephile_flutter/resources/colors.dart';
 
 class CfThemes {
   static ThemeData get primary => ThemeData(
+        primarySwatch: Colors.orange,
         fontFamily: 'Roboto',
         scaffoldBackgroundColor: CfColors.WHITE,
         appBarTheme: AppBarTheme(
