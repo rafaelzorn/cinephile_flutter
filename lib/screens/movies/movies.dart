@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // Cf
 import 'package:cinephile_flutter/resources/strings.dart';
+import 'package:cinephile_flutter/resources/filter-types.dart';
 import 'package:cinephile_flutter/resources/type-request.dart';
 import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
@@ -15,6 +16,7 @@ import 'package:cinephile_flutter/utils/date.dart';
 import 'package:cinephile_flutter/store/mobx.dart';
 import 'package:cinephile_flutter/widgets/modal.dart';
 import 'package:cinephile_flutter/screens/movies/widgets/filter-modal/filter-modal.dart';
+import 'package:cinephile_flutter/services/navigation.dart';
 
 class MoviesScreen extends StatefulWidget {
   // Route
@@ -51,7 +53,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   bool isError = false;
   int page = 1;
   int totalPages = 0;
-  String filterType = 'popularity.desc';
+  String filterType = CfFilterTypes.POPULARITY_DESC;
   String filterName = CfStrings.MOST_POPULAR;
 
   @override
@@ -125,6 +127,21 @@ class _MoviesScreenState extends State<MoviesScreen> {
     }
   }
 
+  Future<void> _handleFilter({String type, String name}) async {
+    if (type != filterType) {
+      setState(() {
+        filterType = type;
+        filterName = name;
+        page = 1;
+        movies = [];
+      });
+
+      _getMovies();
+    }
+
+    NavigationService().goBack();
+  }
+
   Future<void> _handleRefreshMovies() async {
     setState(() {
       isRefresh = true;
@@ -146,7 +163,14 @@ class _MoviesScreenState extends State<MoviesScreen> {
   }
 
   void _handleFilterModalOpen() {
-    CfModalWidget.showModal(context: context, content: FilterModalWidget());
+    CfModalWidget.showModal(
+      context: context,
+      content: FilterModalWidget(
+        handleFilter: _handleFilter,
+        filterType: filterType,
+        filterName: filterName,
+      ),
+    );
   }
 
   Widget _renderMovie({BuildContext context, int index}) {

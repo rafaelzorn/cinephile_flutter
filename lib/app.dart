@@ -43,7 +43,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   void _handleIndexStack({int index}) {
-    UnfocusHelpers.unfocus(context);
+    UnfocusHelpers.unfocus(context: context);
 
     setState(() {
       indexStack = index;

@@ -3,12 +3,48 @@ import 'package:flutter/material.dart';
 // Cf
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/resources/strings.dart';
+import 'package:cinephile_flutter/resources/filter-types.dart';
 import 'package:cinephile_flutter/screens/movies/widgets/filter-modal/widgets/filter.dart';
+import 'package:cinephile_flutter/services/navigation.dart';
 
-// TODO: Refatorar
+class FilterModalWidget extends StatefulWidget {
+  final Function handleFilter;
+  final String filterType;
+  final String filterName;
 
-class FilterModalWidget extends StatelessWidget {
-  Widget _renderOptionSectionTitle(String title) {
+  FilterModalWidget({
+    @required this.handleFilter,
+    @required this.filterType,
+    @required this.filterName,
+  });
+
+  @override
+  _FilterModalWidgetState createState() => _FilterModalWidgetState();
+}
+
+class _FilterModalWidgetState extends State<FilterModalWidget> {
+  // state
+  String filterType;
+  String filterName;
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      filterType = widget.filterType;
+      filterName = widget.filterName;
+    });
+  }
+
+  void _handleValueChange({String type, String name}) {
+    setState(() {
+      filterType = type;
+      filterName = name;
+    });
+  }
+
+  Widget _renderOptionSectionTitle({String title}) {
     return Column(
       children: <Widget>[
         Align(
@@ -32,15 +68,63 @@ class FilterModalWidget extends StatelessWidget {
   Widget _renderOptions() {
     return Column(
       children: <Widget>[
-        _renderOptionSectionTitle(CfStrings.DATE),
-        FilterWidget(title: CfStrings.RELEASES, onChanged: () => {}),
-        FilterWidget(title: CfStrings.OLD, onChanged: () => {}),
-        _renderOptionSectionTitle(CfStrings.POPULARITY),
-        FilterWidget(title: CfStrings.MOST_POPULAR, onChanged: () => {}),
-        FilterWidget(title: CfStrings.LESS_POPULAR, onChanged: () => {}),
-        _renderOptionSectionTitle(CfStrings.REVENUE),
-        FilterWidget(title: CfStrings.HIGHER_REVENUE, onChanged: () => {}),
-        FilterWidget(title: CfStrings.LOWEST_REVENUE, onChanged: () => {}),
+        _renderOptionSectionTitle(title: CfStrings.DATE),
+        FilterWidget(
+          title: CfStrings.RELEASES,
+          type: CfFilterTypes.RELEASE_DATE_DESC,
+          checked: filterType,
+          onChanged: () => _handleValueChange(
+            name: CfStrings.RELEASES,
+            type: CfFilterTypes.RELEASE_DATE_DESC,
+          ),
+        ),
+        FilterWidget(
+          title: CfStrings.OLD,
+          type: CfFilterTypes.RELEASE_DATE_ASC,
+          checked: filterType,
+          onChanged: () => _handleValueChange(
+            name: CfStrings.OLD,
+            type: CfFilterTypes.RELEASE_DATE_ASC,
+          ),
+        ),
+        _renderOptionSectionTitle(title: CfStrings.POPULARITY),
+        FilterWidget(
+          title: CfStrings.MOST_POPULAR,
+          type: CfFilterTypes.POPULARITY_DESC,
+          checked: filterType,
+          onChanged: () => _handleValueChange(
+            name: CfStrings.MOST_POPULAR,
+            type: CfFilterTypes.POPULARITY_DESC,
+          ),
+        ),
+        FilterWidget(
+          title: CfStrings.LESS_POPULAR,
+          type: CfFilterTypes.POPULARITY_ASC,
+          checked: filterType,
+          onChanged: () => _handleValueChange(
+            name: CfStrings.LESS_POPULAR,
+            type: CfFilterTypes.POPULARITY_ASC,
+          ),
+        ),
+        _renderOptionSectionTitle(title: CfStrings.REVENUE),
+        FilterWidget(
+          title: CfStrings.HIGHER_REVENUE,
+          type: CfFilterTypes.REVENUE_DESC,
+          checked: filterType,
+          onChanged: () => _handleValueChange(
+            name: CfStrings.HIGHER_REVENUE,
+            type: CfFilterTypes.REVENUE_DESC,
+          ),
+        ),
+        FilterWidget(
+          title: CfStrings.LOWEST_REVENUE,
+          type: CfFilterTypes.REVENUE_ASC,
+          checked: filterType,
+          onChanged: () => _handleValueChange(
+            name: CfStrings.LOWEST_REVENUE,
+            type: CfFilterTypes.REVENUE_ASC,
+          ),
+        ),
       ],
     );
   }
@@ -58,7 +142,9 @@ class FilterModalWidget extends StatelessWidget {
               padding: EdgeInsets.only(right: 5),
               child: FlatButton(
                 padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                onPressed: () {},
+                onPressed: () {
+                  NavigationService().goBack();
+                },
                 child: Icon(
                   Icons.keyboard_arrow_down,
                   size: 20,
@@ -78,7 +164,9 @@ class FilterModalWidget extends StatelessWidget {
               padding: EdgeInsets.only(left: 5),
               child: FlatButton(
                 padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                onPressed: () {},
+                onPressed: () {
+                  widget.handleFilter(type: filterType, name: filterName);
+                },
                 child: Text(
                   CfStrings.CONFIRM,
                   style: TextStyle(

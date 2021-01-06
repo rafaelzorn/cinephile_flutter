@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/widgets/switch.dart';
 
-// TODO: Refatorar
-
 class FilterWidget extends StatelessWidget {
   final String title;
   final Function onChanged;
+  final String checked;
+  final String type;
 
-  FilterWidget({    
+  FilterWidget({
     @required this.title,
     @required this.onChanged,
+    @required this.checked,
+    @required this.type,
   });
 
   @override
@@ -33,7 +35,8 @@ class FilterWidget extends StatelessWidget {
               color: CfColors.DARK_BLUE,
             ),
           ),
-          CfSwitchWidget(onChanged: () => {}, value: false)
+          CfSwitchWidget(
+              onChanged: this.onChanged, value: (this.type == this.checked))
         ],
       ),
     );

@@ -20,7 +20,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   void _handleSearch({Map<String, Object> genre}) {
-    UnfocusHelpers.unfocus(context);
+    UnfocusHelpers.unfocus(context: context);
 
     NavigationService().navigateTo(MoviesScreen.route, arguments: {
       'typeRequest': CfTypeRequest.DISCOVER,
@@ -64,7 +64,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        UnfocusHelpers.unfocus(context);
+        UnfocusHelpers.unfocus(context: context);
       },
       child: Scaffold(
         appBar: AppBar(

@@ -32,7 +32,9 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
         content: CfStrings.CONTENT_RATING_CONFIGURATION);
   }
 
-  void _handleChangeAdultContent(check) {
+  void _handleChangeAdultContent() {
+    bool check = _mobx.configurationStore.hasAdultContent ? false : true;
+
     _mobx.configurationStore.setConfiguration(check);
   }
 
