@@ -1,14 +1,11 @@
-<resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <!-- Customize your theme here. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:textColor">#000000</item>
-        
-        <item name="android:windowBackground">
-            @drawable/background_splash
-        </item>
 
-        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowBackground">
+          @drawable/background_splash
+        </item>
 
         <item name="android:windowFullscreen">true</item>
     </style>
