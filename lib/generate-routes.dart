@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cinephile_flutter/screens/configuration/configuration.dart';
 import 'package:cinephile_flutter/screens/search/search.dart';
 import 'package:cinephile_flutter/screens/movies/movies.dart';
+import 'package:cinephile_flutter/screens/movie-detail/movie-detail.dart';
 
 class GenerateRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -13,6 +14,10 @@ class GenerateRoute {
       case MoviesScreen.route:
         return MaterialPageRoute(
             builder: (_) => MoviesScreen(arguments: arguments));
+        break;
+      case MovieDetailScreen.route:
+        return MaterialPageRoute(
+            builder: (_) => MovieDetailScreen(arguments: arguments));
         break;
       case SearchScreen.route:
         return MaterialPageRoute(builder: (_) => SearchScreen());

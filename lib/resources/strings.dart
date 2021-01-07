@@ -17,6 +17,7 @@ class CfStrings {
   static const RATE_THE_APP = 'Rate the app';
   static const VERSION = 'Version';
   static const TITLE_SHARE_CONFIGURATION = 'Learn all about movies and series';
+  static const TITLE_SHARE_MOVIE_DETAIL = '##title##, know everything about this movie';
   static const ATTENTION = 'Attention';
   static const CONTENT_RATING_CONFIGURATION =
       'Nothing happens now. In the future you will be redirected to store.';
@@ -30,4 +31,5 @@ class CfStrings {
   static const HIGHER_REVENUE = 'Higher revenue';
   static const LOWEST_REVENUE = 'Lowest revenue';
   static const CONFIRM = 'Confirm';
+  static const MOVIE_DETAILS = 'Movie Details';
 }

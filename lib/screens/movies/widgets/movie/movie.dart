@@ -10,6 +10,8 @@ import 'package:cinephile_flutter/utils/date.dart';
 import 'package:cinephile_flutter/resources/languages.dart';
 import 'package:cinephile_flutter/screens/movies/widgets/movie/widgets/score.dart';
 import 'package:cinephile_flutter/resources/images.dart';
+import 'package:cinephile_flutter/services/navigation.dart';
+import 'package:cinephile_flutter/screens/movie-detail/movie-detail.dart';
 
 class MovieWidget extends StatelessWidget {
   final MovieModel movie;
@@ -71,7 +73,11 @@ class MovieWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        NavigationService().navigateTo(MovieDetailScreen.route, arguments: {
+          'id': movie.id,
+        });
+      },
       child: Container(
         height: 175,
         margin: EdgeInsets.only(bottom: 20),
