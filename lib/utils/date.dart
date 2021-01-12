@@ -15,4 +15,8 @@ class DateUtils {
 
     return DateFormat('yyyy').format(DateTime.parse(date));
   }
+
+  static String convertToDate({String date}) {
+    return DateFormat('dd/MM/yyyy').format(DateTime.parse(date));
+  }
 }

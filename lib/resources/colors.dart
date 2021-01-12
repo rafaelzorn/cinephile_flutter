@@ -14,5 +14,6 @@ class CfColors {
   static const Color LIGHT_YELLOW = Color(0XFFEAB079);
   static const Color LIGHT_GREEN = Color(0XFF82C596);
   static const Color TRANSPARENT = Color(0X00000000);
-  static const Color MODAL_BACKGROUND = Color(0xFF737373);
+  static const Color MODAL_BACKGROUND = Color(0XFF737373);
+  static const Color BLACK = Color(0XFF000000);
 }

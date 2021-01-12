@@ -1,4 +1,4 @@
-class MovieModel {
+class MoviesModel {
   final int id;
   final String title;
   final String posterPath;
@@ -7,7 +7,7 @@ class MovieModel {
   final String originalLanguage;
   final List<dynamic> genreIds;
 
-  MovieModel({
+  MoviesModel({
     this.id,
     this.title,
     this.posterPath,
@@ -17,8 +17,8 @@ class MovieModel {
     this.genreIds,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> jsonMap) {
-    return MovieModel(
+  factory MoviesModel.fromJson(Map<String, dynamic> jsonMap) {
+    return MoviesModel(
       id: jsonMap['id'],
       title: jsonMap['title'],
       posterPath: jsonMap['poster_path'],

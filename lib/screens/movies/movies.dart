@@ -10,7 +10,7 @@ import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 import 'package:cinephile_flutter/widgets/notification.dart';
 import 'package:cinephile_flutter/screens/movies/widgets/movie/movie.dart';
-import 'package:cinephile_flutter/models/movie.dart';
+import 'package:cinephile_flutter/models/movies.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/utils/date.dart';
 import 'package:cinephile_flutter/store/mobx.dart';
@@ -46,7 +46,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   String argumenTypeRequest;
 
   // state
-  List<MovieModel> movies = [];
+  List<MoviesModel> movies = [];
   bool isLoading = false;
   bool isLoadingMore = false;
   bool isRefresh = false;
@@ -106,7 +106,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
       }
 
       moviesFromApi['results'].forEach((movie) {
-        movies.add(MovieModel.fromJson(movie));
+        movies.add(MoviesModel.fromJson(movie));
       });
 
       setState(() {

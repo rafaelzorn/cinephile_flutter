@@ -3,7 +3,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 // Cf
 import 'package:cinephile_flutter/resources/colors.dart';
-import 'package:cinephile_flutter/models/movie.dart';
+import 'package:cinephile_flutter/models/movies.dart';
 import 'package:cinephile_flutter/utils/image.dart';
 import 'package:cinephile_flutter/utils/genre.dart';
 import 'package:cinephile_flutter/utils/date.dart';
@@ -14,7 +14,7 @@ import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/screens/movie-detail/movie-detail.dart';
 
 class MovieWidget extends StatelessWidget {
-  final MovieModel movie;
+  final MoviesModel movie;
 
   MovieWidget({@required this.movie});
 
