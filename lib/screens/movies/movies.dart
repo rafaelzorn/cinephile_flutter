@@ -22,14 +22,14 @@ class MoviesScreen extends StatefulWidget {
   // Route
   static const String route = '/movies';
 
-  final Map arguments;
+  final dynamic id;
+  final dynamic name;
+  final dynamic typeRequest;
 
   MoviesScreen({
-    this.arguments = const {
-      'id': null,
-      'name': null,
-      'typeRequest': CfTypeRequest.DISCOVER,
-    },
+    this.id,
+    this.name,
+    this.typeRequest = CfTypeRequest.DISCOVER,
   });
 
   @override
@@ -40,10 +40,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
   static final _api = ApiService.getInstance();
 
   AsMobx _mobx = AsMobx();
-
-  int argumentId;
-  String argumentName;
-  String argumenTypeRequest;
 
   // state
   List<MoviesModel> movies = [];
@@ -60,10 +56,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
   void initState() {
     super.initState();
 
-    this.argumentId = widget.arguments['id'];
-    this.argumentName = widget.arguments['name'];
-    this.argumenTypeRequest = widget.arguments['typeRequest'];
-
     _getMovies();
   }
 
@@ -76,13 +68,13 @@ class _MoviesScreenState extends State<MoviesScreen> {
       'include_adult': _mobx.configurationStore.hasAdultContent,
     };
 
-    if (this.argumenTypeRequest == CfTypeRequest.DISCOVER) {
+    if (widget.typeRequest == CfTypeRequest.DISCOVER) {
       params.addAll(
-          this.argumentId != null ? {'with_genres': this.argumentId} : {});
+          widget.id != null ? {'with_genres': widget.id} : {});
     }
 
-    if (this.argumenTypeRequest == CfTypeRequest.SEARCH) {
-      params.addAll({'query': this.argumentName.trim()});
+    if (widget.typeRequest == CfTypeRequest.SEARCH) {
+      params.addAll({'query':  widget.name.trim()});
     }
 
     return params;
@@ -94,7 +86,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
     });
 
     try {
-      Response response = await _api.get('${this.argumenTypeRequest}/movie',
+      Response response = await _api.get('${widget.typeRequest}/movie',
           queryParameters: _getQueryRequest());
 
       final moviesFromApi = JsonDecoder().convert(response.toString());
@@ -216,15 +208,15 @@ class _MoviesScreenState extends State<MoviesScreen> {
   }
 
   Widget _renderHeaderTitle() {
-    if (this.argumentName != null) {
-      return Text(this.argumentName);
+    if ( widget.name != null) {
+      return Text( widget.name);
     }
 
     return Text(CfStrings.HOME);
   }
 
   Widget _renderHeaderIcon() {
-    if (this.argumenTypeRequest == CfTypeRequest.DISCOVER) {
+    if (widget.typeRequest == CfTypeRequest.DISCOVER) {
       return IconButton(
         icon: Icon(Icons.filter_list),
         onPressed: () {
@@ -265,9 +257,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
           child: Text(
-            this.argumenTypeRequest == CfTypeRequest.DISCOVER
+            widget.typeRequest == CfTypeRequest.DISCOVER
                 ? this.filterName
-                : this.argumentName,
+                :  widget.name,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
         ),

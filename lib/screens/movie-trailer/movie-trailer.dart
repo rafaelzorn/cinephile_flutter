@@ -9,10 +9,10 @@ class MovieTrailerScreen extends StatefulWidget {
   // Route
   static const String route = '/movie-trailer';
 
-  final Map arguments;
+  final String youtubeKey;
 
   MovieTrailerScreen({
-    this.arguments = const {'key': null},
+    @required this.youtubeKey,
   });
 
   @override
@@ -20,17 +20,8 @@ class MovieTrailerScreen extends StatefulWidget {
 }
 
 class _MovieTrailerScreenState extends State<MovieTrailerScreen> {
-  String argumentKey;
-
   // state
   bool isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-
-    this.argumentKey = widget.arguments['key'];
-  }
 
   Widget _renderLoading() {
     if (isLoading) {
@@ -47,7 +38,7 @@ class _MovieTrailerScreenState extends State<MovieTrailerScreen> {
       children: [
         WebView(
           initialUrl:
-              'https://www.youtube.com/embed/${this.argumentKey}?start=0',
+              'https://www.youtube.com/embed/${widget.youtubeKey}?start=0',
           javascriptMode: JavascriptMode.unrestricted,
           onPageFinished: (finish) {
             setState(() {

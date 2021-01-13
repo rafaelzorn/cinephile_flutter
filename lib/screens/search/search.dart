@@ -9,6 +9,7 @@ import 'package:cinephile_flutter/screens/search/widgets/input-search.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/screens/movies/movies.dart';
 import 'package:cinephile_flutter/helpers/unfocus.dart';
+import 'package:cinephile_flutter/arguments/movies.dart';
 
 class SearchScreen extends StatefulWidget {
   // Route
@@ -22,11 +23,14 @@ class _SearchScreenState extends State<SearchScreen> {
   void _handleSearch({Map<String, Object> genre}) {
     UnfocusHelpers.unfocus(context: context);
 
-    NavigationService().navigateTo(MoviesScreen.route, arguments: {
-      'typeRequest': CfTypeRequest.DISCOVER,
-      'name': genre['name'],
-      'id': genre['id'],
-    });
+    NavigationService().navigateTo(
+      MoviesScreen.route,
+      arguments: MoviesArguments(
+        id: genre['id'],
+        name: genre['name'],
+        typeRequest: CfTypeRequest.DISCOVER,
+      ),
+    );
   }
 
   Widget _renderListGenres() {

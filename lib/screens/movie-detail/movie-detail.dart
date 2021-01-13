@@ -9,17 +9,17 @@ import 'package:cinephile_flutter/utils/string.dart';
 import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 import 'package:cinephile_flutter/widgets/notification.dart';
-import 'package:cinephile_flutter/utils/transform.dart';
 import 'package:cinephile_flutter/screens/movie-detail/widgets/poster/poster.dart';
+import 'package:cinephile_flutter/models/movie.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   // Route
   static const String route = '/movie-detail';
 
-  final Map arguments;
+  final int id;
 
   MovieDetailScreen({
-    this.arguments = const {'id': null},
+    @required this.id,
   });
 
   @override
@@ -29,18 +29,14 @@ class MovieDetailScreen extends StatefulWidget {
 class _MovieDetailState extends State<MovieDetailScreen> {
   static final _api = ApiService.getInstance();
 
-  int argumentId;
-
   // state
   bool isLoading = false;
   bool isError = false;
-  Map<String, dynamic> movieDetail = {};
+  MovieModel movieDetail;
 
   @override
   void initState() {
     super.initState();
-
-    this.argumentId = widget.arguments['id'];
 
     _getMovieDetail();
   }
@@ -57,14 +53,15 @@ class _MovieDetailState extends State<MovieDetailScreen> {
       };
 
       Response response =
-          await _api.get('movie/${this.argumentId}', queryParameters: params);
+          await _api.get('movie/${widget.id}', queryParameters: params);
 
       final movieFromApi = JsonDecoder().convert(response.toString());
+      final movie = MovieModel.fromJson(json: movieFromApi);
 
       setState(() {
         isLoading = false;
         isError = false;
-        movieDetail = movieFromApi;
+        movieDetail = movie;
       });
     } catch (error) {
       setState(() {
@@ -96,17 +93,15 @@ class _MovieDetailState extends State<MovieDetailScreen> {
       );
     }
 
-    final Map<String, dynamic> movie = TransformUtils.movie(movie: movieDetail);
-
     return SingleChildScrollView(
       child: Column(
         children: [
           PosterWidget(
-            backdropBath: movie['backdropBath'],
-            images: movie['images'],
-            title: movie['title'],
-            video: movie['video'],
-            voteAverage: movie['voteAverage']
+            backdropBath: movieDetail.backdropBath,
+            images: movieDetail.images,
+            title: movieDetail.title,
+            video: movieDetail.video,
+            voteAverage: movieDetail.voteAverage
           ),
         ],
       ),

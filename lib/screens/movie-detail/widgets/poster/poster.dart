@@ -9,6 +9,8 @@ import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/screens/movie-trailer/movie-trailer.dart';
 import 'package:cinephile_flutter/screens/movie-gallery/movie-gallery.dart';
+import 'package:cinephile_flutter/arguments/movie-trailer.dart';
+import 'package:cinephile_flutter/arguments/movie-gallery.dart';
 
 class PosterWidget extends StatelessWidget {
   final String backdropBath;
@@ -53,9 +55,8 @@ class PosterWidget extends StatelessWidget {
             return false;
           }
 
-          NavigationService().navigateTo(MovieGalleryScreen.route, arguments: {
-            'images': this.images,
-          });
+          NavigationService().navigateTo(MovieGalleryScreen.route,
+              arguments: MovieGalleryArguments(images: this.images));
         },
         splashColor:
             this.images.length > 0 ? CfColors.WHITE : CfColors.TRANSPARENT,
@@ -107,10 +108,8 @@ class PosterWidget extends StatelessWidget {
         child: FloatingActionButton(
           elevation: 0,
           onPressed: () {
-            NavigationService()
-                .navigateTo(MovieTrailerScreen.route, arguments: {
-              'key': this.video['key'],
-            });
+            NavigationService().navigateTo(MovieTrailerScreen.route,
+                arguments: MovieTrailerArguments(youtubeKey: this.video['key']));
           },
           child: Icon(
             Icons.play_arrow,

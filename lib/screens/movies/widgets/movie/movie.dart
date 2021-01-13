@@ -12,6 +12,7 @@ import 'package:cinephile_flutter/screens/movies/widgets/movie/widgets/score.dar
 import 'package:cinephile_flutter/resources/images.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/screens/movie-detail/movie-detail.dart';
+import 'package:cinephile_flutter/arguments/movie-detail.dart';
 
 class MovieWidget extends StatelessWidget {
   final MoviesModel movie;
@@ -74,9 +75,8 @@ class MovieWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        NavigationService().navigateTo(MovieDetailScreen.route, arguments: {
-          'id': movie.id,
-        });
+        NavigationService().navigateTo(MovieDetailScreen.route,
+                arguments: MovieDetailArguments(id: movie.id));
       },
       child: Container(
         height: 175,

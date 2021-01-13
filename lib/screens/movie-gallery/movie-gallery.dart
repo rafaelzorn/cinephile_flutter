@@ -11,10 +11,10 @@ class MovieGalleryScreen extends StatefulWidget {
   // Route
   static const String route = '/movie-gallery';
 
-  final Map arguments;
+  final List<dynamic> images;
 
   MovieGalleryScreen({
-    this.arguments = const {'images': null},
+    @required this.images,
   });
 
   @override
@@ -22,24 +22,15 @@ class MovieGalleryScreen extends StatefulWidget {
 }
 
 class _MovieGalleryScreenState extends State<MovieGalleryScreen> {
-  List<dynamic> argumentImages;
-
-  @override
-  void initState() {
-    super.initState();
-
-    this.argumentImages = widget.arguments['images'];
-  }
-
   Widget _renderContent() {
     return Container(
       color: CfColors.BLACK,
       child: PhotoViewGallery.builder(
-        itemCount: this.argumentImages.length,
+        itemCount: widget.images.length,
         builder: (context, index) {
           return PhotoViewGalleryPageOptions(
             imageProvider: NetworkImage(
-              this.argumentImages[index],
+              widget.images[index],
             ),
             minScale: PhotoViewComputedScale.contained * 0.8,
             maxScale: PhotoViewComputedScale.covered * 2,
