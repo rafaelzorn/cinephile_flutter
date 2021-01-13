@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Cf
 import 'package:cinephile_flutter/resources/strings.dart';
+import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 
@@ -25,8 +26,11 @@ class _MovieTrailerScreenState extends State<MovieTrailerScreen> {
 
   Widget _renderLoading() {
     if (isLoading) {
-      return Center(
-        child: SizedBox(height: 40, width: 40, child: CfSpinnerWidget()),
+      return Container(
+        color: CfColors.BLACK,
+        child: Center(
+          child: SizedBox(height: 40, width: 40, child: CfSpinnerWidget(color: CfColors.WHITE)),
+        ),
       );
     }
 
