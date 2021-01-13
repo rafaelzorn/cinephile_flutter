@@ -33,6 +33,7 @@ dependencies:
   flutter_mobx: ^1.1.0
   webview_flutter: ^1.0.7
   photo_view: ^0.10.3
+  readmore: ^1.0.0
   
 dev_dependencies:
   flutter_test:

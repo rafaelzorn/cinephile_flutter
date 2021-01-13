@@ -160,7 +160,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
 
   Widget _renderContent() {
     return SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(20, 25, 20, 20),
+      padding: EdgeInsets.fromLTRB(15, 25, 15, 20),
       child: Column(
         children: <Widget>[
           _renderSectionInterface(),

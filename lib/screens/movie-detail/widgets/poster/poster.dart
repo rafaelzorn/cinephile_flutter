@@ -68,7 +68,7 @@ class PosterWidget extends StatelessWidget {
             children: [
               Positioned(
                 width: MediaQuery.of(context).size.width - 20,
-                left: 20,
+                left: 15,
                 bottom: 20,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

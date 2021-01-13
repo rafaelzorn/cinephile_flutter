@@ -22,7 +22,7 @@ class FilterWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: 0,
-        horizontal: 30,
+        horizontal: 25,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

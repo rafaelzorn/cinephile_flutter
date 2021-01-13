@@ -73,7 +73,7 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 25, 20, 25),
+      padding: EdgeInsets.fromLTRB(15, 25, 15, 25),
       child: Stack(
         alignment: Alignment.centerRight,
         children: <Widget>[

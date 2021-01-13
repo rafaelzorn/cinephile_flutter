@@ -37,4 +37,14 @@ class CfStrings {
   static const NO = 'No';
   static const TRAILER = 'Trailer';
   static const GALLERY = 'Gallery';
+  static const DURATION = 'Duration';
+  static const LANGUAGE = 'Language';
+  static const GENRE = 'Genre';
+  static const RELEASE = 'Release';
+  static const BUDGET = 'Budget';  
+  static const ADULT = 'Adult';
+  static const SYNOPSIS = 'Synopsis';
+  static const SHOW_MORE = 'Show more';
+  static const SHOW_LESS = 'Show less';
+  static const MAIN_CAST = 'Main cast';
 }

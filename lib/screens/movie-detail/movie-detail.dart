@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
+import 'package:readmore/readmore.dart';
 
 // Cf
 import 'package:cinephile_flutter/widgets/share.dart';
 import 'package:cinephile_flutter/resources/strings.dart';
+import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/utils/string.dart';
 import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 import 'package:cinephile_flutter/widgets/notification.dart';
 import 'package:cinephile_flutter/screens/movie-detail/widgets/poster/poster.dart';
+import 'package:cinephile_flutter/screens/movie-detail/widgets/main-info/main-info.dart';
 import 'package:cinephile_flutter/models/movie.dart';
 
 class MovieDetailScreen extends StatefulWidget {
@@ -77,6 +80,47 @@ class _MovieDetailState extends State<MovieDetailScreen> {
             '${StringUtils.replace(string: CfStrings.TITLE_SHARE_MOVIE_DETAIL, from: '##title##', replace: 'Título')} \u{1F37F}');
   }
 
+  Widget _renderTitleSection({String title, double top, double bottom}) {
+    return Container(
+      margin: EdgeInsets.only(left: 15, top: top, bottom: bottom),
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 19,
+              color: CfColors.DARK_BLUE,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _renderOverview() {
+    return Container(
+      padding: EdgeInsets.only(left: 15, right: 15),
+      child: ReadMoreText(
+        movieDetail.overview,
+        trimLines: 3,
+        colorClickableText: CfColors.PINK,
+        trimMode: TrimMode.Line,
+        trimCollapsedText: CfStrings.SHOW_MORE,
+        trimExpandedText: CfStrings.SHOW_LESS,
+        textAlign: TextAlign.justify,
+        style: TextStyle(
+          fontSize: 15,
+          color: CfColors.BLUE,
+        ),
+        moreStyle: TextStyle(
+          fontSize: 15,
+          color: CfColors.PINK,
+        ),
+      ),
+    );
+  }
+
   Widget _renderContent() {
     if (isLoading) {
       return Center(
@@ -101,7 +145,27 @@ class _MovieDetailState extends State<MovieDetailScreen> {
             images: movieDetail.images,
             title: movieDetail.title,
             video: movieDetail.video,
-            voteAverage: movieDetail.voteAverage
+            voteAverage: movieDetail.voteAverage,
+          ),
+          MainInfoWidget(
+            duration: movieDetail.duration,
+            genre: movieDetail.genre,
+            language: movieDetail.language,
+            release: movieDetail.release,
+            budget: movieDetail.budget,
+            revenue: movieDetail.revenue,
+            adult: movieDetail.adult,
+          ),
+          _renderTitleSection(
+            title: CfStrings.SYNOPSIS,
+            top: 25,
+            bottom: 15,
+          ),
+          _renderOverview(),
+          _renderTitleSection(
+            title: CfStrings.MAIN_CAST,
+            top: 35,
+            bottom: 15,
           ),
         ],
       ),

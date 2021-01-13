@@ -50,7 +50,7 @@ class _FilterModalWidgetState extends State<FilterModalWidget> {
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
             child: Text(
               title,
               style: TextStyle(
