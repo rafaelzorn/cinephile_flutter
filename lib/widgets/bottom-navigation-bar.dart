@@ -14,23 +14,16 @@ class CfBottomNavigationBar extends StatelessWidget {
   });
 
   _renderBottomNavigationBarItem({IconData icon, String title}) {
-    return BottomNavigationBarItem(
-      icon: Icon(icon),
-      label: title,
-    );
+    return BottomNavigationBarItem(icon: Icon(icon), label: title);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 55,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: CfColors.BLUE,
-          ),
-        ],
-      ),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(color: CfColors.BLUE),
+      ]),
       child: BottomNavigationBar(
         selectedItemColor: CfColors.PINK,
         backgroundColor: CfColors.WHITE,
@@ -39,9 +32,7 @@ class CfBottomNavigationBar extends StatelessWidget {
         selectedFontSize: 12,
         elevation: 0,
         currentIndex: currentIndex,
-        onTap: (index) {
-          this.handleIndexStack(index);
-        },
+        onTap: (index) => this.handleIndexStack(index),
         items: [
           _renderBottomNavigationBarItem(
               icon: Icons.home, title: CfStrings.HOME),

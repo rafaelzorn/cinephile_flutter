@@ -48,7 +48,7 @@ class MovieModel {
 
   factory MovieModel.fromJson({Map<String, dynamic> json}) {    
     return MovieModel(
-      title: StringUtils.checkEmpty(value: json['title'], dontValue: ''),
+      title: StringUtils.checkEmpty(value: json['title'], dontValue: CfStrings.UNIFORMED),
       backdropBath: StringUtils.checkEmpty(value: json['backdrop_path'], dontValue: ''),
       video: ArrayUtils.checkValueExistInArray(
           array: json['videos']['results'], dontValue: null),
@@ -64,7 +64,7 @@ class MovieModel {
           array: json['production_companies'], num: 10),
       duration: TimeUtils.convertMinsToHrsMins(time: json['runtime']),
       genre: GenreUtils.convertToGenres(genres: json['genres']),
-      language: CfLanguages.LANGUAGES[json['original_language']],
+      language: CfLanguages.LANGUAGES[json['original_language']] ?? CfStrings.UNIFORMED,
       release: DateUtils.convertToDate(date: json['release_date']),
       budget: CurrencyUtils.convertToDolar(value: json['budget']),
       revenue: CurrencyUtils.convertToDolar(value: json['revenue']),

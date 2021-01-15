@@ -8,13 +8,13 @@ class StorageService {
     return SharedPreferences.getInstance();
   }
 
-  Future setBool(StorageKeys key, bool value) async {
+  Future setBool({StorageKeys key, bool value}) async {
     SharedPreferences sharedStorage = await _sharedStorage();
 
     return sharedStorage.setBool(key.toString(), value);
   }
 
-  Future<bool> getBool(StorageKeys key) async {
+  Future<bool> getBool({StorageKeys key}) async {
     SharedPreferences sharedStorage = await _sharedStorage();
 
     return sharedStorage.getBool(key.toString());

@@ -216,17 +216,7 @@ class _FilterModalWidgetState extends State<FilterModalWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: (MediaQuery.of(context).size.height * 0.7),
-      color: CfColors.MODAL_BACKGROUND,
-      child: Container(
-        decoration: BoxDecoration(
-          color: CfColors.WHITE,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          ),
-        ),
-        child: _renderContent(),
-      ),
+      child: _renderContent(),
     );
   }
 }

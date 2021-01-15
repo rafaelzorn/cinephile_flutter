@@ -13,6 +13,7 @@ import 'package:cinephile_flutter/resources/images.dart';
 import 'package:cinephile_flutter/services/navigation.dart';
 import 'package:cinephile_flutter/screens/movie-detail/movie-detail.dart';
 import 'package:cinephile_flutter/arguments/movie-detail.dart';
+import 'package:cinephile_flutter/widgets/touchable-opacity.dart';
 
 class MovieWidget extends StatelessWidget {
   final MoviesModel movie;
@@ -73,10 +74,11 @@ class MovieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return CfTouchableOpacityWidget(
+      activeOpacity: 0.5,
       onTap: () {
         NavigationService().navigateTo(MovieDetailScreen.route,
-                arguments: MovieDetailArguments(id: movie.id));
+            arguments: MovieDetailArguments(id: movie.id));
       },
       child: Container(
         height: 175,

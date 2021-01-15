@@ -24,27 +24,19 @@ class CfNotificationWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: InkWell(
-        onTap: () {
-          this.onPress();
-        },
+        onTap: () => this.onPress(),
         child: FractionallySizedBox(
           widthFactor: 0.50,
           child: Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(100),
-              ),
-              border: Border.all(
-                color: CfColors.LIGHT_GRAY,
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+              border: Border.all(color: CfColors.LIGHT_GRAY),
             ),
             child: Text(
               this.textButton,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: CfColors.BLUE,
-              ),
+              style: TextStyle(color: CfColors.BLUE),
             ),
           ),
         ),
@@ -59,11 +51,7 @@ class CfNotificationWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(
-            this.icon,
-            size: 72,
-            color: CfColors.DARK_BLUE,
-          ),
+          Icon(this.icon, size: 72, color: CfColors.DARK_BLUE),
           Container(
             padding: EdgeInsets.all(25),
             child: Text(

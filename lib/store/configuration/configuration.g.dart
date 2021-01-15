@@ -29,7 +29,7 @@ mixin _$ConfigurationStore on ConfigurationStoreBase, Store {
       AsyncAction('ConfigurationStoreBase.initializeConfigurationStore');
 
   @override
-  Future<dynamic> initializeConfigurationStore() {
+  Future<void> initializeConfigurationStore() {
     return _$initializeConfigurationStoreAsyncAction
         .run(() => super.initializeConfigurationStore());
   }
@@ -38,11 +38,11 @@ mixin _$ConfigurationStore on ConfigurationStoreBase, Store {
       ActionController(name: 'ConfigurationStoreBase');
 
   @override
-  dynamic setConfiguration(bool adultContent) {
+  void setConfiguration({bool adultContent}) {
     final _$actionInfo = _$ConfigurationStoreBaseActionController.startAction(
         name: 'ConfigurationStoreBase.setConfiguration');
     try {
-      return super.setConfiguration(adultContent);
+      return super.setConfiguration(adultContent: adultContent);
     } finally {
       _$ConfigurationStoreBaseActionController.endAction(_$actionInfo);
     }

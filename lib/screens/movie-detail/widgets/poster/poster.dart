@@ -11,6 +11,7 @@ import 'package:cinephile_flutter/screens/movie-trailer/movie-trailer.dart';
 import 'package:cinephile_flutter/screens/movie-gallery/movie-gallery.dart';
 import 'package:cinephile_flutter/arguments/movie-trailer.dart';
 import 'package:cinephile_flutter/arguments/movie-gallery.dart';
+import 'package:cinephile_flutter/widgets/touchable-opacity.dart';
 
 class PosterWidget extends StatelessWidget {
   final String backdropBath;
@@ -47,48 +48,44 @@ class PosterWidget extends StatelessWidget {
   }
 
   Widget _renderInfoMovie({BuildContext context}) {
-    return Material(
-      color: Colors.white.withOpacity(0.0),
-      child: InkWell(
-        onTap: () {
-          if (this.images.length == 0) {
-            return false;
-          }
+    return CfTouchableOpacityWidget(
+      activeOpacity: 0.5,
+      onTap: () {
+        if (this.images.length == 0) {
+          return false;
+        }
 
-          NavigationService().navigateTo(MovieGalleryScreen.route,
-              arguments: MovieGalleryArguments(images: this.images));
-        },
-        splashColor:
-            this.images.length > 0 ? CfColors.WHITE : CfColors.TRANSPARENT,
-        child: Container(
-          height: (MediaQuery.of(context).size.width * 0.60),
-          width: MediaQuery.of(context).size.width,
-          color: CfColors.BLACK.withOpacity(this.images.length >= 0 ? 0.5 : 0),
-          child: Stack(
-            children: [
-              Positioned(
-                width: MediaQuery.of(context).size.width - 20,
-                left: 15,
-                bottom: 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      this.title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: TextStyle(
-                        fontSize: 27,
-                        fontWeight: FontWeight.bold,
-                        color: CfColors.WHITE,
-                      ),
+        NavigationService().navigateTo(MovieGalleryScreen.route,
+            arguments: MovieGalleryArguments(images: this.images));
+      },
+      child: Container(
+        height: (MediaQuery.of(context).size.width * 0.60),
+        width: MediaQuery.of(context).size.width,
+        color: CfColors.BLACK.withOpacity(0.5),
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              width: MediaQuery.of(context).size.width - 20,
+              left: 15,
+              bottom: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    this.title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                      color: CfColors.WHITE,
                     ),
-                    _renderRating(context: context),
-                  ],
-                ),
+                  ),
+                  _renderRating(context: context),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -106,10 +103,10 @@ class PosterWidget extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.16,
         height: MediaQuery.of(context).size.width * 0.16,
         child: FloatingActionButton(
-          elevation: 0,
           onPressed: () {
             NavigationService().navigateTo(MovieTrailerScreen.route,
-                arguments: MovieTrailerArguments(youtubeKey: this.video['key']));
+                arguments:
+                    MovieTrailerArguments(youtubeKey: this.video['key']));
           },
           child: Icon(
             Icons.play_arrow,
@@ -144,7 +141,7 @@ class PosterWidget extends StatelessWidget {
       height: (MediaQuery.of(context).size.width * 0.66),
       width: MediaQuery.of(context).size.width,
       child: Stack(
-        children: [
+        children: <Widget>[
           _renderImage(context: context),
           _renderInfoMovie(context: context),
           _renderButtonPlay(context: context),

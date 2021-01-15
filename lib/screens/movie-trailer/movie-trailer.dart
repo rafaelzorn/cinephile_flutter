@@ -39,7 +39,7 @@ class _MovieTrailerScreenState extends State<MovieTrailerScreen> {
 
   Widget _renderContent() {
     return Stack(
-      children: [
+      children: <Widget>[
         WebView(
           initialUrl:
               'https://www.youtube.com/embed/${widget.youtubeKey}?start=0',

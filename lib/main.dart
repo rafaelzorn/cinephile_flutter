@@ -20,9 +20,9 @@ Future main() async {
 class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: CfColors.WHITE,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: CfColors.WHITE),
+    );
 
     return MaterialApp(
       debugShowCheckedModeBanner: true,

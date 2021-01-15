@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:readmore/readmore.dart';
+import 'package:share/share.dart';
 
 // Cf
-import 'package:cinephile_flutter/widgets/share.dart';
 import 'package:cinephile_flutter/resources/strings.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
+import 'package:cinephile_flutter/resources/involved-types.dart';
 import 'package:cinephile_flutter/utils/string.dart';
 import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 import 'package:cinephile_flutter/widgets/notification.dart';
 import 'package:cinephile_flutter/screens/movie-detail/widgets/poster/poster.dart';
 import 'package:cinephile_flutter/screens/movie-detail/widgets/main-info/main-info.dart';
+import 'package:cinephile_flutter/screens/movie-detail/widgets/involveds/involveds.dart';
 import 'package:cinephile_flutter/models/movie.dart';
 
 class MovieDetailScreen extends StatefulWidget {
@@ -75,16 +77,17 @@ class _MovieDetailState extends State<MovieDetailScreen> {
   }
 
   void _handleShare() {
-    CfShareWidget.share(
-        title:
-            '${StringUtils.replace(string: CfStrings.TITLE_SHARE_MOVIE_DETAIL, from: '##title##', replace: 'Título')} \u{1F37F}');
+    Share.share(
+      '${StringUtils.replace(string: CfStrings.TITLE_SHARE_MOVIE_DETAIL, from: '##title##', replace: 'Título')} \u{1F37F}',
+    );
   }
 
-  Widget _renderTitleSection({String title, double top, double bottom}) {
+  Widget _renderTitleSection(
+      {String title, double top = 0, double bottom = 0}) {
     return Container(
       margin: EdgeInsets.only(left: 15, top: top, bottom: bottom),
       child: Row(
-        children: [
+        children: <Widget>[
           Text(
             title,
             style: TextStyle(
@@ -100,6 +103,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
 
   Widget _renderOverview() {
     return Container(
+      margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.only(left: 15, right: 15),
       child: ReadMoreText(
         movieDetail.overview,
@@ -139,7 +143,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
 
     return SingleChildScrollView(
       child: Column(
-        children: [
+        children: <Widget>[
           PosterWidget(
             backdropBath: movieDetail.backdropBath,
             images: movieDetail.images,
@@ -162,10 +166,20 @@ class _MovieDetailState extends State<MovieDetailScreen> {
             bottom: 15,
           ),
           _renderOverview(),
-          _renderTitleSection(
-            title: CfStrings.MAIN_CAST,
-            top: 35,
-            bottom: 15,
+          _renderTitleSection(title: CfStrings.MAIN_CAST),
+          InvolvedsWidget(
+            involveds: movieDetail.cast,
+            involvedType: CfInvolvedTypes.CHARACTER,
+          ),
+          _renderTitleSection(title: CfStrings.MAIN_TECHNICAL_TEAM),
+          InvolvedsWidget(
+            involveds: movieDetail.crew,
+            involvedType: CfInvolvedTypes.PRODUCTION_TEAM,
+          ),
+          _renderTitleSection(title: CfStrings.PRODUCER),
+          InvolvedsWidget(
+            involveds: movieDetail.productionCompanies,
+            involvedType: CfInvolvedTypes.PRODUCER,
           ),
         ],
       ),

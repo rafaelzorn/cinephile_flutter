@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:share/share.dart';
 
 // Cf
 import 'package:cinephile_flutter/resources/strings.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 import 'package:cinephile_flutter/widgets/switch.dart';
 import 'package:cinephile_flutter/widgets/alert-dialog.dart';
-import 'package:cinephile_flutter/widgets/share.dart';
 import 'package:cinephile_flutter/store/mobx.dart';
 
 class ConfigurationScreen extends StatefulWidget {
@@ -21,8 +21,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
   final AsMobx _mobx = AsMobx();
 
   void _handleShare() {
-    CfShareWidget.share(
-        title: '${CfStrings.TITLE_SHARE_CONFIGURATION} \u{1F37F}');
+    Share.share('${CfStrings.TITLE_SHARE_CONFIGURATION} \u{1F37F}');
   }
 
   void _handleRating() {
@@ -35,7 +34,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
   void _handleChangeAdultContent() {
     bool check = _mobx.configurationStore.hasAdultContent ? false : true;
 
-    _mobx.configurationStore.setConfiguration(check);
+    _mobx.configurationStore.setConfiguration(adultContent: check);
   }
 
   Widget _renderSectionTitle({String title}) {

@@ -28,7 +28,7 @@ class MainInfoWidget extends StatelessWidget {
       margin: EdgeInsets.only(right: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Container(
             margin: EdgeInsets.only(bottom: 7),
             child: Text(

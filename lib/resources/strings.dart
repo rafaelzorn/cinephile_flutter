@@ -41,10 +41,12 @@ class CfStrings {
   static const LANGUAGE = 'Language';
   static const GENRE = 'Genre';
   static const RELEASE = 'Release';
-  static const BUDGET = 'Budget';  
+  static const BUDGET = 'Budget';
   static const ADULT = 'Adult';
   static const SYNOPSIS = 'Synopsis';
   static const SHOW_MORE = 'Show more';
   static const SHOW_LESS = 'Show less';
   static const MAIN_CAST = 'Main cast';
+  static const MAIN_TECHNICAL_TEAM = 'Main technical team';
+  static const PRODUCER = 'Producer';
 }
