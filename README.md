@@ -11,7 +11,7 @@ Cinephile Flutter is an application developed with Flutter it will make it easy 
 
 ## Preview
 
-<img src="./preview.gif" height="500">
+![Cinephile](./preview.png)
 
 ## APIs
 
