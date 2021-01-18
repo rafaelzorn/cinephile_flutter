@@ -25,7 +25,7 @@ class Main extends StatelessWidget {
     );
 
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       title: CfStrings.APP_NAME,
       theme: CfThemes.primary,
       onGenerateRoute: GenerateRoute.generateRoute,

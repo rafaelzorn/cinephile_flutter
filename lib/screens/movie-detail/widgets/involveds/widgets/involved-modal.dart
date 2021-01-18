@@ -138,7 +138,7 @@ class _InvolvedModalWidgetState extends State<InvolvedModalWidget> {
       child: Text(
         information,
         maxLines: 2,
-        textAlign: TextAlign.justify,
+        textAlign: TextAlign.left,
         style: TextStyle(fontSize: 16, color: CfColors.BLUE),
       ),
     );
