@@ -11,7 +11,7 @@ Cinephile Flutter is an application developed with Flutter it will make it easy 
 
 ## Preview
 
-<table style="border-spacing: 0; border-collapse: collapse;">
+<table>
   	<tr>
 	  	<td valign="top"><img src="preview/1.png"></td>
 		<td valign="top"><img src="preview/2.png"></td>
