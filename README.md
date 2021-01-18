@@ -12,16 +12,16 @@ Cinephile Flutter is an application developed with Flutter it will make it easy 
 ## Preview
 
 <table>
-  <tr>
-	  <td style="border: 1px solid #d6d6d6;"><img src="preview/1.png" width="270"></td>
-		<td style="border: 1px solid #d6d6d6;"><img src="preview/2.png" width="270"></td>
-		<td style="border: 1px solid #d6d6d6;"><img src="preview/3.png" width="270"></td>
-		<td style="border: 1px solid #d6d6d6;"><img src="preview/4.png" width="270"></td>
+  	<tr>
+	  	<td style="border: 2px solid #d6d6d6; padding: 0;"><img src="preview/1.png" width="270"></td>
+		<td style="border: 2px solid #d6d6d6; padding: 0;"><img src="preview/2.png" width="270"></td>
+		<td style="border: 2px solid #d6d6d6; padding: 0;"><img src="preview/3.png" width="270"></td>
+		<td style="border: 2px solid #d6d6d6; padding: 0;"><img src="preview/4.png" width="270"></td>
 	</tr>
 	<tr>		
-		<td style="border: 1px solid #d6d6d6;"><img src="preview/5.png" width="270"></td>
-		<td style="border: 1px solid #d6d6d6;"><img src="preview/6.png" width="270"></td>
-		<td style="border: 1px solid #d6d6d6;"><img src="preview/7.png" width="270"></td>
+		<td style="border: 2px solid #d6d6d6; padding: 0;"><img src="preview/5.png" width="270"></td>
+		<td style="border: 2px solid #d6d6d6; padding: 0;"><img src="preview/6.png" width="270"></td>
+		<td style="border: 2px solid #d6d6d6; padding: 0;"><img src="preview/7.png" width="270"></td>
 	</tr>
 </table>
 
