@@ -19,20 +19,27 @@ class InvolvedModel {
     this.placeOfBirth,
   });
 
-  factory InvolvedModel.fromJson({Map<String, dynamic> json}) {
+  factory InvolvedModel.fromJson({Map<String, dynamic> jsonMap}) {
     return InvolvedModel(
-      profilePath: json['profile_path'],
+      profilePath: jsonMap['profile_path'],
       name: StringUtils.checkEmpty(
-          value: json['name'], dontValue: CfStrings.UNIFORMED),
+        value: jsonMap['name'],
+        dontValue: CfStrings.UNIFORMED
+      ),
       knownForDepartment: StringUtils.checkEmpty(
-          value: json['known_for_department'],
-          dontValue: '${CfStrings.UNIFORMED} department'),
+        value: jsonMap['known_for_department'],
+        dontValue: '${CfStrings.UNIFORMED} department',
+      ),
       biography: StringUtils.checkEmpty(
-          value: json['biography'], dontValue: CfStrings.UNIFORMED),
+        value: jsonMap['biography'],
+        dontValue: CfStrings.UNIFORMED,
+      ),
       birthday: StringUtils.checkEmpty(
-          value: json['birthday'], dontValue: CfStrings.UNIFORMED),
+        value: jsonMap['birthday'],
+        dontValue: CfStrings.UNIFORMED,
+      ),
       placeOfBirth:
-          json['place_of_birth'] ?? '${CfStrings.UNIFORMED} place of birth',
+          jsonMap['place_of_birth'] ?? '${CfStrings.UNIFORMED} place of birth',
     );
   }
 }

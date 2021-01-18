@@ -82,7 +82,7 @@ class InvolvedsWidget extends StatelessWidget {
               )
             : Image.asset(
                 CfImages.notFound,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
                 height: 60,
                 width: 60,
               ),

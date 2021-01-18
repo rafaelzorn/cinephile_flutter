@@ -51,7 +51,7 @@ class _InvolvedModalWidgetState extends State<InvolvedModalWidget> {
           JsonDecoder().convert(response.toString());
 
       final InvolvedModel involved =
-          InvolvedModel.fromJson(json: involvedFromApi);
+          InvolvedModel.fromJson(jsonMap: involvedFromApi);
 
       setState(() {
         isLoading = false;

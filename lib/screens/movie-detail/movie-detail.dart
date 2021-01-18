@@ -59,7 +59,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
           await _api.get('movie/${widget.id}', queryParameters: params);
 
       final movieFromApi = JsonDecoder().convert(response.toString());
-      final movie = MovieModel.fromJson(json: movieFromApi);
+      final movie = MovieModel.fromJson(jsonMap: movieFromApi);
 
       setState(() {
         isLoading = false;
@@ -157,12 +157,12 @@ class _MovieDetailState extends State<MovieDetailScreen> {
           ),
           _renderTitleSection(title: CfStrings.SYNOPSIS, top: 25, bottom: 15),
           _renderOverview(),
-          _renderTitleSection(title: CfStrings.MAIN_CAST),
+          _renderTitleSection(title: CfStrings.MAIN_CAST, bottom: 10),
           InvolvedsWidget(
             involveds: movieDetail.cast,
             involvedType: CfInvolvedTypes.CHARACTER,
           ),
-          _renderTitleSection(title: CfStrings.MAIN_TECHNICAL_TEAM),
+          _renderTitleSection(title: CfStrings.MAIN_TECHNICAL_TEAM, bottom: 10),
           InvolvedsWidget(
             involveds: movieDetail.crew,
             involvedType: CfInvolvedTypes.PRODUCTION_TEAM,

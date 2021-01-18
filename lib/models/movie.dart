@@ -46,33 +46,49 @@ class MovieModel {
     this.adult,
   });
 
-  factory MovieModel.fromJson({Map<String, dynamic> json}) {
+  factory MovieModel.fromJson({Map<String, dynamic> jsonMap}) {
+
+    print(jsonMap);
+
     return MovieModel(
       title: StringUtils.checkEmpty(
-          value: json['title'], dontValue: CfStrings.UNIFORMED),
-      backdropPath:
-          StringUtils.checkEmpty(value: json['backdrop_path'], dontValue: ''),
+        value: jsonMap['title'],
+        dontValue: CfStrings.UNIFORMED,
+      ),
+      backdropPath: jsonMap['backdrop_path'],
       video: ArrayUtils.checkValueExistInArray(
-          array: json['videos']['results'], dontValue: null),
+        array: jsonMap['videos']['results'],
+        dontValue: null,
+      ),
       overview: StringUtils.checkEmpty(
-          value: json['overview'], dontValue: CfStrings.UNIFORMED),
-      images: ImageUtils.formatImageUrl(images: json['images']['backdrops']),
-      voteAverage:
-          StringUtils.checkEmpty(value: json['vote_average'], dontValue: 0),
-      cast:
-          ArrayUtils.sliceArrayLength(array: json['credits']['cast'], num: 15),
-      crew:
-          ArrayUtils.sliceArrayLength(array: json['credits']['crew'], num: 15),
+        value: jsonMap['overview'],
+        dontValue: CfStrings.UNIFORMED,
+      ),
+      images: ImageUtils.formatImageUrl(images: jsonMap['images']['backdrops']),
+      voteAverage: StringUtils.checkEmpty(
+        value: jsonMap['vote_average'],
+        dontValue: 0,
+      ),
+      cast: ArrayUtils.sliceArrayLength(
+        array: jsonMap['credits']['cast'],
+        num: 15,
+      ),
+      crew: ArrayUtils.sliceArrayLength(
+        array: jsonMap['credits']['crew'],
+        num: 15,
+      ),
       productionCompanies: ArrayUtils.sliceArrayLength(
-          array: json['production_companies'], num: 10),
-      duration: TimeUtils.convertMinsToHrsMins(time: json['runtime']),
-      genre: GenreUtils.convertToGenres(genres: json['genres']),
-      language: CfLanguages.LANGUAGES[json['original_language']] ??
+        array: jsonMap['production_companies'],
+        num: 10,
+      ),
+      duration: TimeUtils.convertMinsToHrsMins(time: jsonMap['runtime']),
+      genre: GenreUtils.convertToGenres(genres: jsonMap['genres']),
+      language: CfLanguages.LANGUAGES[jsonMap['original_language']] ??
           CfStrings.UNIFORMED,
-      release: DateUtils.convertToDate(date: json['release_date']),
-      budget: CurrencyUtils.convertToDolar(value: json['budget']),
-      revenue: CurrencyUtils.convertToDolar(value: json['revenue']),
-      adult: json['adult'] ? CfStrings.YES : CfStrings.NO,
+      release: DateUtils.convertToDate(date: jsonMap['release_date']),
+      budget: CurrencyUtils.convertToDolar(value: jsonMap['budget']),
+      revenue: CurrencyUtils.convertToDolar(value: jsonMap['revenue']),
+      adult: jsonMap['adult'] ? CfStrings.YES : CfStrings.NO,
     );
   }
 }
