@@ -11,7 +11,7 @@ import 'package:cinephile_flutter/utils/string.dart';
 
 class MovieModel {
   final String title;
-  final String backdropBath;
+  final String backdropPath;
   final dynamic video;
   final String overview;
   final List<dynamic> images;
@@ -29,7 +29,7 @@ class MovieModel {
 
   MovieModel({
     this.title,
-    this.backdropBath,
+    this.backdropPath,
     this.video,
     this.overview,
     this.images,
@@ -46,16 +46,19 @@ class MovieModel {
     this.adult,
   });
 
-  factory MovieModel.fromJson({Map<String, dynamic> json}) {    
+  factory MovieModel.fromJson({Map<String, dynamic> json}) {
     return MovieModel(
-      title: StringUtils.checkEmpty(value: json['title'], dontValue: CfStrings.UNIFORMED),
-      backdropBath: StringUtils.checkEmpty(value: json['backdrop_path'], dontValue: ''),
+      title: StringUtils.checkEmpty(
+          value: json['title'], dontValue: CfStrings.UNIFORMED),
+      backdropPath:
+          StringUtils.checkEmpty(value: json['backdrop_path'], dontValue: ''),
       video: ArrayUtils.checkValueExistInArray(
           array: json['videos']['results'], dontValue: null),
-      overview:
-          StringUtils.checkEmpty(value: json['overview'], dontValue: CfStrings.UNIFORMED),
+      overview: StringUtils.checkEmpty(
+          value: json['overview'], dontValue: CfStrings.UNIFORMED),
       images: ImageUtils.formatImageUrl(images: json['images']['backdrops']),
-      voteAverage: StringUtils.checkEmpty(value: json['vote_average'], dontValue: 0),
+      voteAverage:
+          StringUtils.checkEmpty(value: json['vote_average'], dontValue: 0),
       cast:
           ArrayUtils.sliceArrayLength(array: json['credits']['cast'], num: 15),
       crew:
@@ -64,7 +67,8 @@ class MovieModel {
           array: json['production_companies'], num: 10),
       duration: TimeUtils.convertMinsToHrsMins(time: json['runtime']),
       genre: GenreUtils.convertToGenres(genres: json['genres']),
-      language: CfLanguages.LANGUAGES[json['original_language']] ?? CfStrings.UNIFORMED,
+      language: CfLanguages.LANGUAGES[json['original_language']] ??
+          CfStrings.UNIFORMED,
       release: DateUtils.convertToDate(date: json['release_date']),
       budget: CurrencyUtils.convertToDolar(value: json['budget']),
       revenue: CurrencyUtils.convertToDolar(value: json['revenue']),

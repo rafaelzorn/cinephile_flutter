@@ -12,9 +12,7 @@ class MovieTrailerScreen extends StatefulWidget {
 
   final String youtubeKey;
 
-  MovieTrailerScreen({
-    @required this.youtubeKey,
-  });
+  MovieTrailerScreen({@required this.youtubeKey});
 
   @override
   _MovieTrailerScreenState createState() => _MovieTrailerScreenState();
@@ -29,7 +27,11 @@ class _MovieTrailerScreenState extends State<MovieTrailerScreen> {
       return Container(
         color: CfColors.BLACK,
         child: Center(
-          child: SizedBox(height: 40, width: 40, child: CfSpinnerWidget(color: CfColors.WHITE)),
+          child: SizedBox(
+            height: 40,
+            width: 40,
+            child: CfSpinnerWidget(color: CfColors.WHITE),
+          ),
         ),
       );
     }

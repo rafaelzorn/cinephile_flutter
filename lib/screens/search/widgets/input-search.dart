@@ -60,13 +60,8 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
     return IconButton(
       splashColor: CfColors.TRANSPARENT,
       highlightColor: CfColors.TRANSPARENT,
-      icon: Icon(
-        Icons.clear,
-        color: CfColors.DARK_GRAY,
-      ),
-      onPressed: () {
-        _handleClearSearch();
-      },
+      icon: Icon(Icons.clear, color: CfColors.DARK_GRAY),
+      onPressed: () => _handleClearSearch(),
     );
   }
 
@@ -91,22 +86,14 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
                 borderSide: BorderSide(color: CfColors.TRANSPARENT),
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
-              prefixIcon: Icon(
-                Icons.search,
-                color: CfColors.DARK_GRAY,
-              ),
+              prefixIcon: Icon(Icons.search, color: CfColors.DARK_GRAY),
               contentPadding: EdgeInsets.all(5),
               hintText: CfStrings.SEARCH,
-              hintStyle: TextStyle(
-                fontSize: 18,
-                color: CfColors.DARK_GRAY,
-              ),
+              hintStyle: TextStyle(fontSize: 18, color: CfColors.DARK_GRAY),
               filled: true,
               fillColor: CfColors.FREEZE,
             ),
-            onSubmitted: (String text) {
-              _handleSubmit();
-            },
+            onSubmitted: (String text) => _handleSubmit(),
           ),
           _renderIconClear(),
         ],

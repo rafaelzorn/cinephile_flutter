@@ -16,10 +16,7 @@ class InvolvedsWidget extends StatelessWidget {
   final List<dynamic> involveds;
   final String involvedType;
 
-  InvolvedsWidget({
-    @required this.involveds,
-    @required this.involvedType,
-  });
+  InvolvedsWidget({@required this.involveds, @required this.involvedType});
 
   Widget _renderTitle({
     String title,
@@ -61,39 +58,39 @@ class InvolvedsWidget extends StatelessWidget {
     return CfStrings.UNIFORMED;
   }
 
-  void _handleInvolvedModalOpen({BuildContext context}) {
+  void _handleInvolvedModalOpen({BuildContext context, int involvedId}) {
     CfModalWidget.showModal(
       context: context,
-      content: InvolvedModalWidget(),
+      content: InvolvedModalWidget(involvedId: involvedId),
     );
   }
 
-  Widget _renderImage({BuildContext context, int index}) {
-    if (involvedType == CfInvolvedTypes.PRODUCER) {
-      return Container(
-        margin: EdgeInsets.only(bottom: 10),
-        child: Container(
-          height: 60,
-          width: 60,
-          child: this.involveds[index]['logo_path'] != null
-              ? FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: ImageUtils.getImageApi(
-                      path: this.involveds[index]['logo_path']),
-                  height: 60,
-                  width: 60,
-                  fit: BoxFit.contain,
-                )
-              : Image.asset(
-                  CfImages.notFound,
-                  fit: BoxFit.contain,
-                  height: 60,
-                  width: 60,
-                ),
-        ),
-      );
-    }
+  Widget _renderImagesProducer({int index}) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      child: Container(
+        height: 60,
+        width: 60,
+        child: this.involveds[index]['logo_path'] != null
+            ? FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: ImageUtils.getImageApi(
+                    path: this.involveds[index]['logo_path']),
+                height: 60,
+                width: 60,
+                fit: BoxFit.contain,
+              )
+            : Image.asset(
+                CfImages.notFound,
+                fit: BoxFit.contain,
+                height: 60,
+                width: 60,
+              ),
+      ),
+    );
+  }
 
+  Widget _renderOtherImagesProducer({int index}) {
     return Container(
       margin: EdgeInsets.only(bottom: 10, top: 10),
       child: ClipOval(
@@ -120,6 +117,14 @@ class InvolvedsWidget extends StatelessWidget {
     );
   }
 
+  Widget _renderImage({BuildContext context, int index}) {
+    if (involvedType == CfInvolvedTypes.PRODUCER) {
+      return _renderImagesProducer(index: index);
+    }
+
+    return _renderOtherImagesProducer(index: index);
+  }
+
   Widget _renderItem({BuildContext context, int index}) {
     return CfTouchableOpacityWidget(
       activeOpacity: involvedType == CfInvolvedTypes.PRODUCER ? 1 : 0.5,
@@ -128,7 +133,8 @@ class InvolvedsWidget extends StatelessWidget {
           return false;
         }
 
-        _handleInvolvedModalOpen(context: context);
+        _handleInvolvedModalOpen(
+            context: context, involvedId: this.involveds[index]['id']);
       },
       child: Container(
         margin: EdgeInsets.only(right: 15),
@@ -166,19 +172,13 @@ class InvolvedsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (this.involveds.length == 0) {
       return Container(
-        margin: EdgeInsets.only(
-          bottom: 30,
-          top: 10,
-        ),
+        margin: EdgeInsets.only(bottom: 30, top: 10),
         padding: EdgeInsets.only(left: 15),
         child: Row(
           children: <Widget>[
             Text(
               CfStrings.UNIFORMED,
-              style: TextStyle(
-                fontSize: 14,
-                color: CfColors.BLUE,
-              ),
+              style: TextStyle(fontSize: 14, color: CfColors.BLUE),
             ),
           ],
         ),
@@ -190,7 +190,7 @@ class InvolvedsWidget extends StatelessWidget {
       child: Column(children: <Widget>[
         Container(
           width: double.infinity,
-          height: 160,
+          height: 150,
           child: ListView.builder(
             padding: EdgeInsets.only(left: 15),
             scrollDirection: Axis.horizontal,

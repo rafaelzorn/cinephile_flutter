@@ -20,23 +20,19 @@ class FilterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 0,
-        horizontal: 25,
-      ),
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(
-              fontSize: 16,
-              color: CfColors.DARK_BLUE,
-            ),
+            style: TextStyle(fontSize: 16, color: CfColors.DARK_BLUE),
           ),
           CfSwitchWidget(
-              onChanged: this.onChanged, value: (this.type == this.checked))
+            onChanged: this.onChanged,
+            value: (this.type == this.checked),
+          ),
         ],
       ),
     );

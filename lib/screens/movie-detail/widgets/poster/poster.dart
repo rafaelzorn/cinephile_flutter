@@ -14,14 +14,14 @@ import 'package:cinephile_flutter/arguments/movie-gallery.dart';
 import 'package:cinephile_flutter/widgets/touchable-opacity.dart';
 
 class PosterWidget extends StatelessWidget {
-  final String backdropBath;
+  final String backdropPath;
   final String title;
   final double voteAverage;
   final List<dynamic> images;
   final dynamic video;
 
   PosterWidget({
-    @required this.backdropBath,
+    @required this.backdropPath,
     @required this.title,
     @required this.voteAverage,
     @required this.images,
@@ -33,16 +33,18 @@ class PosterWidget extends StatelessWidget {
       margin: EdgeInsets.only(top: 8),
       child: Row(
         children: List.generate(
-            RatingUtils.getAvarageRating(score: this.voteAverage), (index) {
-          return Container(
-            margin: EdgeInsets.only(right: 5),
-            child: Icon(
-              Icons.star,
-              size: (MediaQuery.of(context).size.width * 0.07),
-              color: CfColors.WHITE,
-            ),
-          );
-        }),
+          RatingUtils.getAvarageRating(score: this.voteAverage),
+          (index) {
+            return Container(
+              margin: EdgeInsets.only(right: 5),
+              child: Icon(
+                Icons.star,
+                size: (MediaQuery.of(context).size.width * 0.07),
+                color: CfColors.WHITE,
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -104,9 +106,10 @@ class PosterWidget extends StatelessWidget {
         height: MediaQuery.of(context).size.width * 0.16,
         child: FloatingActionButton(
           onPressed: () {
-            NavigationService().navigateTo(MovieTrailerScreen.route,
-                arguments:
-                    MovieTrailerArguments(youtubeKey: this.video['key']));
+            NavigationService().navigateTo(
+              MovieTrailerScreen.route,
+              arguments: MovieTrailerArguments(youtubeKey: this.video['key']),
+            );
           },
           child: Icon(
             Icons.play_arrow,
@@ -122,16 +125,13 @@ class PosterWidget extends StatelessWidget {
     return Container(
       height: (MediaQuery.of(context).size.width * 0.60),
       width: MediaQuery.of(context).size.width,
-      child: this.backdropBath != null
+      child: this.backdropPath != null
           ? FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: ImageUtils.getImageApi(path: this.backdropBath),
+              image: ImageUtils.getImageApi(path: this.backdropPath),
               fit: BoxFit.cover,
             )
-          : Image.asset(
-              CfImages.notFound,
-              fit: BoxFit.cover,
-            ),
+          : Image.asset(CfImages.notFound, fit: BoxFit.cover),
     );
   }
 

@@ -13,9 +13,7 @@ class MovieGalleryScreen extends StatefulWidget {
 
   final List<dynamic> images;
 
-  MovieGalleryScreen({
-    @required this.images,
-  });
+  MovieGalleryScreen({@required this.images});
 
   @override
   _MovieGalleryScreenState createState() => _MovieGalleryScreenState();
@@ -37,16 +35,12 @@ class _MovieGalleryScreenState extends State<MovieGalleryScreen> {
           );
         },
         scrollPhysics: BouncingScrollPhysics(),
-        backgroundDecoration: BoxDecoration(
-          color: CfColors.BLACK,
-        ),
+        backgroundDecoration: BoxDecoration(color: CfColors.BLACK),
         loadingBuilder: (context, event) => Center(
           child: SizedBox(
             height: 40,
             width: 40,
-            child: CfSpinnerWidget(
-              color: CfColors.WHITE,
-            ),
+            child: CfSpinnerWidget(color: CfColors.WHITE),
           ),
         ),
       ),

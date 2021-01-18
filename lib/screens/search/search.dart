@@ -38,14 +38,14 @@ class _SearchScreenState extends State<SearchScreen> {
       itemCount: CfGenres.GENRES.length,
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
-          onTap: () {
-            _handleSearch(genre: CfGenres.GENRES[index]);
-          },
+          onTap: () => _handleSearch(genre: CfGenres.GENRES[index]),
           child: Container(
             padding: EdgeInsets.only(top: 15, bottom: 15),
             child: Center(
-              child: Text(CfGenres.GENRES[index]['name'],
-                  style: TextStyle(fontSize: 18, color: CfColors.DARK_BLUE)),
+              child: Text(
+                CfGenres.GENRES[index]['name'],
+                style: TextStyle(fontSize: 18, color: CfColors.DARK_BLUE),
+              ),
             ),
           ),
         );
@@ -57,9 +57,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Column(
       children: <Widget>[
         InputSearchWidget(),
-        Expanded(
-          child: _renderListGenres(),
-        ),
+        Expanded(child: _renderListGenres()),
       ],
     );
   }
@@ -67,13 +65,9 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        UnfocusHelpers.unfocus(context: context);
-      },
+      onTap: () => UnfocusHelpers.unfocus(context: context),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(CfStrings.SEARCH),
-        ),
+        appBar: AppBar(title: Text(CfStrings.SEARCH)),
         body: _renderContent(),
       ),
     );

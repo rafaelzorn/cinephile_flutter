@@ -2,7 +2,7 @@ class MoviesModel {
   final int id;
   final String title;
   final String posterPath;
-  final double voteAverage;
+  final dynamic voteAverage;
   final String releaseDate;
   final String originalLanguage;
   final List<dynamic> genreIds;
@@ -22,7 +22,7 @@ class MoviesModel {
       id: jsonMap['id'],
       title: jsonMap['title'],
       posterPath: jsonMap['poster_path'],
-      voteAverage: jsonMap['vote_average'].toDouble(),
+      voteAverage: jsonMap['vote_average'],
       releaseDate: jsonMap['release_date'],
       originalLanguage: jsonMap['original_language'],
       genreIds: jsonMap['genre_ids'],

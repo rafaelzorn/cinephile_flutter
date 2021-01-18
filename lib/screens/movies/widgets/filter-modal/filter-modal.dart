@@ -129,61 +129,64 @@ class _FilterModalWidgetState extends State<FilterModalWidget> {
     );
   }
 
+  Widget _renderButtonClose() {
+    return Expanded(
+      flex: 1,
+      child: Padding(
+        padding: EdgeInsets.only(right: 5),
+        child: FlatButton(
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+          onPressed: () => NavigationService().goBack(),
+          child: Icon(
+            Icons.keyboard_arrow_down,
+            size: 20,
+            color: CfColors.DARK_BLUE,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+            side: BorderSide(color: CfColors.DARK_BLUE),
+          ),
+          color: CfColors.WHITE,
+        ),
+      ),
+    );
+  }
+
+  Widget _renderButtonConfirm() {
+    return Expanded(
+      flex: 2,
+      child: Padding(
+        padding: EdgeInsets.only(left: 5),
+        child: FlatButton(
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+          onPressed: () {
+            widget.handleFilter(type: filterType, name: filterName);
+          },
+          child: Text(
+            CfStrings.CONFIRM,
+            style: TextStyle(
+              color: CfColors.WHITE,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+            side: BorderSide(color: CfColors.DARK_BLUE),
+          ),
+          color: CfColors.DARK_BLUE,
+        ),
+      ),
+    );
+  }
+
   Widget _renderButtons() {
     return Container(
       padding: EdgeInsets.all(20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: EdgeInsets.only(right: 5),
-              child: FlatButton(
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                onPressed: () {
-                  NavigationService().goBack();
-                },
-                child: Icon(
-                  Icons.keyboard_arrow_down,
-                  size: 20,
-                  color: CfColors.DARK_BLUE,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                  side: BorderSide(color: CfColors.DARK_BLUE),
-                ),
-                color: CfColors.WHITE,
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: EdgeInsets.only(left: 5),
-              child: FlatButton(
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                onPressed: () {
-                  widget.handleFilter(type: filterType, name: filterName);
-                },
-                child: Text(
-                  CfStrings.CONFIRM,
-                  style: TextStyle(
-                    color: CfColors.WHITE,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                  side: BorderSide(color: CfColors.DARK_BLUE),
-                ),
-                color: CfColors.DARK_BLUE,
-              ),
-            ),
-          ),
-        ],
+        children: <Widget>[_renderButtonClose(), _renderButtonConfirm()],
       ),
     );
   }
@@ -203,9 +206,7 @@ class _FilterModalWidgetState extends State<FilterModalWidget> {
           ),
         ),
         Expanded(
-          child: SingleChildScrollView(
-            child: _renderOptions(),
-          ),
+          child: SingleChildScrollView(child: _renderOptions()),
         ),
         _renderButtons(),
       ],

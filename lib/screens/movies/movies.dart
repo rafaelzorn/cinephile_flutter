@@ -26,11 +26,7 @@ class MoviesScreen extends StatefulWidget {
   final dynamic name;
   final dynamic typeRequest;
 
-  MoviesScreen({
-    this.id,
-    this.name,
-    this.typeRequest = CfTypeRequest.DISCOVER,
-  });
+  MoviesScreen({this.id, this.name, this.typeRequest = CfTypeRequest.DISCOVER});
 
   @override
   _MoviesScreenState createState() => _MoviesScreenState();
@@ -69,12 +65,11 @@ class _MoviesScreenState extends State<MoviesScreen> {
     };
 
     if (widget.typeRequest == CfTypeRequest.DISCOVER) {
-      params.addAll(
-          widget.id != null ? {'with_genres': widget.id} : {});
+      params.addAll(widget.id != null ? {'with_genres': widget.id} : {});
     }
 
     if (widget.typeRequest == CfTypeRequest.SEARCH) {
-      params.addAll({'query':  widget.name.trim()});
+      params.addAll({'query': widget.name.trim()});
     }
 
     return params;
@@ -183,9 +178,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
       child: FractionallySizedBox(
         widthFactor: 0.50,
         child: InkWell(
-          onTap: () {
-            _handleLoadMoreMovies();
-          },
+          onTap: () => _handleLoadMoreMovies(),
           child: Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
@@ -207,21 +200,11 @@ class _MoviesScreenState extends State<MoviesScreen> {
     );
   }
 
-  Widget _renderHeaderTitle() {
-    if ( widget.name != null) {
-      return Text( widget.name);
-    }
-
-    return Text(CfStrings.HOME);
-  }
-
   Widget _renderHeaderIcon() {
     if (widget.typeRequest == CfTypeRequest.DISCOVER) {
       return IconButton(
         icon: Icon(Icons.filter_list),
-        onPressed: () {
-          _handleFilterModalOpen();
-        },
+        onPressed: () => _handleFilterModalOpen(),
       );
     }
 
@@ -259,7 +242,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
           child: Text(
             widget.typeRequest == CfTypeRequest.DISCOVER
                 ? this.filterName
-                :  widget.name,
+                : widget.name,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
         ),
@@ -283,7 +266,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: _renderHeaderTitle(),
+        title: Text(widget.name ?? CfStrings.HOME),
         actions: <Widget>[
           _renderHeaderIcon(),
         ],

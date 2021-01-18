@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cinephile_flutter/resources/colors.dart';
 
 class ScoreWidget extends StatelessWidget {
-  final double score;
+  final dynamic score;
 
   ScoreWidget({@required this.score});
 

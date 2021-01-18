@@ -23,9 +23,7 @@ class MovieDetailScreen extends StatefulWidget {
 
   final int id;
 
-  MovieDetailScreen({
-    @required this.id,
-  });
+  MovieDetailScreen({@required this.id});
 
   @override
   _MovieDetailState createState() => _MovieDetailState();
@@ -82,8 +80,11 @@ class _MovieDetailState extends State<MovieDetailScreen> {
     );
   }
 
-  Widget _renderTitleSection(
-      {String title, double top = 0, double bottom = 0}) {
+  Widget _renderTitleSection({
+    String title,
+    double top = 0,
+    double bottom = 0,
+  }) {
     return Container(
       margin: EdgeInsets.only(left: 15, top: top, bottom: bottom),
       child: Row(
@@ -103,7 +104,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
 
   Widget _renderOverview() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 30),
       padding: EdgeInsets.only(left: 15, right: 15),
       child: ReadMoreText(
         movieDetail.overview,
@@ -113,14 +114,8 @@ class _MovieDetailState extends State<MovieDetailScreen> {
         trimCollapsedText: CfStrings.SHOW_MORE,
         trimExpandedText: CfStrings.SHOW_LESS,
         textAlign: TextAlign.justify,
-        style: TextStyle(
-          fontSize: 15,
-          color: CfColors.BLUE,
-        ),
-        moreStyle: TextStyle(
-          fontSize: 15,
-          color: CfColors.PINK,
-        ),
+        style: TextStyle(fontSize: 15, color: CfColors.BLUE),
+        moreStyle: TextStyle(fontSize: 15, color: CfColors.PINK),
       ),
     );
   }
@@ -145,7 +140,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
       child: Column(
         children: <Widget>[
           PosterWidget(
-            backdropBath: movieDetail.backdropBath,
+            backdropPath: movieDetail.backdropPath,
             images: movieDetail.images,
             title: movieDetail.title,
             video: movieDetail.video,
@@ -160,11 +155,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
             revenue: movieDetail.revenue,
             adult: movieDetail.adult,
           ),
-          _renderTitleSection(
-            title: CfStrings.SYNOPSIS,
-            top: 25,
-            bottom: 15,
-          ),
+          _renderTitleSection(title: CfStrings.SYNOPSIS, top: 25, bottom: 15),
           _renderOverview(),
           _renderTitleSection(title: CfStrings.MAIN_CAST),
           InvolvedsWidget(
@@ -189,9 +180,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
   Widget _renderHeaderIcon() {
     return IconButton(
       icon: Icon(Icons.share),
-      onPressed: () {
-        _handleShare();
-      },
+      onPressed: () => _handleShare(),
     );
   }
 

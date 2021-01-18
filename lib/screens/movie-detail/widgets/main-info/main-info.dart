@@ -43,10 +43,7 @@ class MainInfoWidget extends StatelessWidget {
           Text(
             information,
             textAlign: TextAlign.justify,
-            style: TextStyle(
-              fontSize: 15,
-              color: CfColors.BLUE,
-            ),
+            style: TextStyle(fontSize: 15, color: CfColors.BLUE),
           ),
         ],
       ),
@@ -66,19 +63,33 @@ class MainInfoWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               _renderInformation(
-                  title: CfStrings.DURATION, information: this.duration),
+                title: CfStrings.DURATION,
+                information: this.duration,
+              ),
               _renderInformation(
-                  title: CfStrings.LANGUAGE, information: this.language),
+                title: CfStrings.LANGUAGE,
+                information: this.language,
+              ),
               _renderInformation(
-                  title: CfStrings.GENRE, information: this.genre),
+                title: CfStrings.GENRE,
+                information: this.genre,
+              ),
               _renderInformation(
-                  title: CfStrings.RELEASE, information: this.release),
+                title: CfStrings.RELEASE,
+                information: this.release,
+              ),
               _renderInformation(
-                  title: CfStrings.BUDGET, information: this.budget),
+                title: CfStrings.BUDGET,
+                information: this.budget,
+              ),
               _renderInformation(
-                  title: CfStrings.REVENUE, information: this.revenue),
+                title: CfStrings.REVENUE,
+                information: this.revenue,
+              ),
               _renderInformation(
-                  title: CfStrings.ADULT, information: this.adult),
+                title: CfStrings.ADULT,
+                information: this.adult,
+              ),
             ],
           ),
         ),

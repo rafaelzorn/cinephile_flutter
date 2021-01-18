@@ -49,4 +49,5 @@ class CfStrings {
   static const MAIN_CAST = 'Main cast';
   static const MAIN_TECHNICAL_TEAM = 'Main technical team';
   static const PRODUCER = 'Producer';
+  static const BIOGRAPHY = 'Biography';
 }

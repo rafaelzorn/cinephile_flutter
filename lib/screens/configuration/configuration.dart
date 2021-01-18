@@ -26,9 +26,10 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
 
   void _handleRating() {
     CfAlertDialogWidget.alertDialog(
-        context: context,
-        title: CfStrings.ATTENTION,
-        content: CfStrings.CONTENT_RATING_CONFIGURATION);
+      context: context,
+      title: CfStrings.ATTENTION,
+      content: CfStrings.CONTENT_RATING_CONFIGURATION,
+    );
   }
 
   void _handleChangeAdultContent() {
@@ -59,24 +60,23 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
         children: <Widget>[
           _renderSectionTitle(title: CfStrings.INTERFACE),
           Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 25,
-              horizontal: 0,
-            ),
+            padding: EdgeInsets.symmetric(vertical: 25, horizontal: 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Text(CfStrings.INCLUDE_ADULT_CONTENT,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: CfColors.DARK_BLUE,
-                    )),
-                Observer(builder: (_) {
-                  return CfSwitchWidget(
+                Text(
+                  CfStrings.INCLUDE_ADULT_CONTENT,
+                  style: TextStyle(fontSize: 18, color: CfColors.DARK_BLUE),
+                ),
+                Observer(
+                  builder: (_) {
+                    return CfSwitchWidget(
                       onChanged: _handleChangeAdultContent,
-                      value: _mobx.configurationStore.hasAdultContent);
-                })
+                      value: _mobx.configurationStore.hasAdultContent,
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -93,10 +93,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
     IconData icon,
   }) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 25,
-        horizontal: 0,
-      ),
+      padding: EdgeInsets.symmetric(vertical: 25, horizontal: 0),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -111,21 +108,12 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(
-              fontSize: 18,
-              color: colorText,
-            ),
+            style: TextStyle(fontSize: 18, color: colorText),
           ),
           onPress != null
               ? GestureDetector(
-                  onTap: () {
-                    onPress();
-                  },
-                  child: Icon(
-                    icon,
-                    size: 25,
-                    color: CfColors.DARK_BLUE,
-                  ),
+                  onTap: () => onPress(),
+                  child: Icon(icon, size: 25, color: CfColors.DARK_BLUE),
                 )
               : Container(),
         ],
