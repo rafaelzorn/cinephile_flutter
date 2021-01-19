@@ -12,8 +12,8 @@ import 'package:cinephile_flutter/utils/string.dart';
 import 'package:cinephile_flutter/services/api.dart';
 import 'package:cinephile_flutter/widgets/spinner.dart';
 import 'package:cinephile_flutter/widgets/notification.dart';
-import 'package:cinephile_flutter/screens/movie-detail/widgets/poster/poster.dart';
-import 'package:cinephile_flutter/screens/movie-detail/widgets/main-info/main-info.dart';
+import 'package:cinephile_flutter/screens/movie-detail/widgets/poster.dart';
+import 'package:cinephile_flutter/screens/movie-detail/widgets/main-info.dart';
 import 'package:cinephile_flutter/screens/movie-detail/widgets/involveds/involveds.dart';
 import 'package:cinephile_flutter/models/movie.dart';
 
