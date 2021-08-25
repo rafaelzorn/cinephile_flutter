@@ -23,7 +23,7 @@ Cinephile Flutter is an application developed with Flutter it will make it easy 
 
 - You need to set up all the Flutter enviroment
 - Clone this repository
-- Install all dependencies using the command `flutter pub get.`
+- Install all dependencies using the command `flutter pub get`
 - Fill the `.env` file
 - If you are in VScode press `F5` to execute the App
 
